@@ -1,0 +1,229 @@
+\documentclass[12pt, letterpaper]{scrartcl}
+
+
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage[shortlabels]{enumitem} % Use a. in the enumerate
+\usepackage{amsmath} % aligned equations
+\usepackage{graphicx} % include figure
+\usepackage{float} % usage of H for figure float
+\usepackage{amssymb} % \blacksqure
+\usepackage{xhfill} % fill horizontal line
+
+\usepackage{xcolor} % colors
+\usepackage{sectsty} % section coloring
+\sectionfont{\color{blue}}  % sets colour of sections
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\Real}{\mathcal{Re}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\mat}{\mathcal{M}}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\Hom}{\mathcal{L}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\restr}[1]{|_{#1}}
+
+
+
+\begin{document}
+
+% ### Header - start ###
+\begin{center}
+    \hrule
+    \vspace{0.4cm}
+    { \textbf{{\large Homework 1}} \\ MATH 543 --- Linear Algebra}
+\end{center}
+{ Name: \textbf{Ali Zafari} \hspace{\fill} Spring 2023 } \newline\hrule
+% ### Header - end ###
+
+\section*{1.A $\R^n$ and $\C^n$ \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 10}
+\begin{align*}
+    (4,-3,1,7) + 2x &= (5,9,-6,8)\\
+    2x &= (5,9,-6,8) + (-4,+3,-1,-7) \qquad\text{(Additive Inverse)}\\
+    x &= \frac{1}{2}(1,12,-7,1) \qquad\qquad\qquad\quad\quad\quad\text{(Scalar Multiplication)}\\
+    x &= (0.5,6,-3.5,0.5)
+\end{align*}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 11}
+Assume $\lambda \in \C$, then we can write $\lambda$ as $\lambda=a+bi$ where $a,b\in\R$. By using the the scalar multiplication property in $\C^3$ and the fact that two list are equal if their elements are equal in the same order, we have:
+\begin{align}
+    2a+3b + (-3a+2b)i&=12-5i \label{eq:1.A.11.1}\\
+    5a-4b + (4a+5b)i&=7+22i \label{eq:1.A.11.2}\\
+    -6a-7b + (7a-6b)i&=-32-9i \label{eq:1.A.11.3}
+\end{align}
+from equation \ref{eq:1.A.11.1}: $a=3$, $b=2$\\
+from equation \ref{eq:1.A.11.2}: $a=3$, $b=2$\\
+from equation \ref{eq:1.A.11.3}: $a=1.5176$, $b=3.2706$\\\\
+All the three equations cannot be satisfied simultaneously.
+\vskip1mm\hrule
+
+\section*{1.B Vector Space \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 1}
+By additive inverse property of $V$:
+\begin{align*}
+    -v + (-(-v)) &= 0\\
+    v -v + (-(-v)) &= 0+v\\
+    (-(-v)) &= 0+v\\
+    -(-v) &= v
+\end{align*}
+\vskip1mm\hrule
+\subsubsection*{Exercise 2}
+I. By use of scalar multiplication distributive property:
+\begin{align*}
+    av&=0\\
+    av&=av+(-av)\\
+    av&=(a+(-a))v\\
+    av&=0v\\
+    a&=0
+\end{align*}
+II. By use of vector addition distributive property:
+\begin{align*}
+    av&=0\\
+    av&=av+(-av)\\
+    av&=a(v+(-v))\\
+    av&=a0\\
+    v&=0
+\end{align*}
+\vskip1mm\hrule
+\subsubsection*{Exercise 4}
+Additive Identity. There must exist an element $0\in V$ such that $v+0=v \quad\forall v \in V$, but the empty set has no element at all.
+\vskip1mm\hrule
+\subsubsection*{Exercise 6}
+By using a counterexample we will prove that $\R\cup\{\infty\}\cup\{-\infty\}$ is not a vector space over $\R$. Assume $\lambda,\gamma\in\R$ and $v=\infty$. By the distributive property of a vector space:
+\begin{align*}
+    (\lambda+\gamma)\infty=\lambda \infty + \gamma \infty
+\end{align*}
+if we set $\lambda>0,\gamma<0$ and $\lambda+\gamma\neq0$:
+\begin{itemize}
+    \item LHS: $\infty$ or $-\infty$, depending on the value of $\lambda+\gamma$
+    \item RHS: 0
+\end{itemize}
+It says that the additive identity is equal to $\infty$ or $-\infty$. This violates property (1.25) discussed in book which tells that \textbf{in a vector space the additive identity must be unique}.
+\vskip1mm\hrule
+
+\vskip10mm
+\section*{1.C Subspaces  \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 1} 
+\begin{enumerate}[(a)]
+    \item $x_1+2x_2+3x_3=0$ is the equation of a two dimensional plane in $\F^3$. It includes zero ($0$) and any linear combination of two points on this plane stays on the plane. Therefore it is a subspace of $\F^3$.
+
+    \item $x_1+2x_2+3x_3=4$ is the equation of a two dimensional plane in $\F^3$. It does not contain the zero (0) vector. So it is not a valid subspace of $\F^3$.
+
+    \item $x_1x_2x_3=0$ is the equation of points on 3 separate two dimensional planes in $\F^3$. The linear combination of two vectors chosen on 2 different planes may not necessarily stays on the planes. Therefore it is not a valid subspace of $\F^3$.
+
+    \item $x_1=5x_3$ is a plane crossing the origin in $\F^3$. This space contains zero and any linear combination of its elements stays in this space. Hence this is a subspace of $\F^3$. 
+\end{enumerate}
+\vskip1mm\hrule
+\subsubsection*{Exercise 4}
+We call the target space $U$. For $U$ to be a subspace must have a unique additive identity, $0 + f = f$ such that $0,f\in U$. The condition of vectors in this space must be satisfied even for the additive identity:
+\begin{align*}
+\int_0^1 0=b
+\end{align*}
+therefore we must have $b=0$ for this space to be a subspace of $\R^{[0,1]}$. (closure on the linear combination is obvious when $b=0$.)
+\vskip1mm\hrule
+\subsubsection*{Exercise 6} 
+\begin{enumerate}[(a)]
+    \item In this case, $a^3=b^3$ implies $a=b$, hence we will have $\{(a,b,c)\in \R^3:a=b\}$ and this space includes zero and is closed on any linear combination of its members. This is a subspace of $\R^3$.
+
+    \item In the complex numbers case, solution to the equation $a^3=b^3$ could also be $a=b\frac{1\pm\sqrt{3}i}{2}$, other than the obvious $a=b$.\\
+    If we assume $b=1$, we will have two vectors $(\frac{1+\sqrt{3}i}{2},1,0)$ and $(\frac{1-\sqrt{3}i}{2},1,0)$ which their addition vector $(1,2,0)$ does not stay in the same space. Therefore this is not a subspace of $\R^3$.
+\end{enumerate}
+\vskip1mm\hrule
+\subsubsection*{Exercise 8}
+\begin{align*}
+    U=\{(x,y)\in \R^2: x+y=0 \vee x-y=0\}
+\end{align*}
+\vskip1mm\hrule
+\subsubsection*{Exercise 10} 
+If $U_1$ and $U_2$ are subspaces of $V$, they both contain zero, so their intersection at least includes zero. Any linear combination is closed on $U_1$ or $U_2$, and since any vector in $U_1\cap U_2$ is also a member of $U_1$ then the linear combination is also closed for the intersection.\\ Finally, by having the zero and linear combination closure, $U_1\cap U_2$ is a subspace of $V$.
+\vskip1mm\hrule
+\subsubsection*{Exercise 12}
+$U$ and $W$ are subspaces of V. We prove it in two steps:
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\
+    Here, we assume $U\subseteq W$ and try to show that $U\cup W$ is a subspace of $V$. By $U$ being a subset of $W$ we have $U\cup W=W$. Since $W$ is a subspace of V, then $U\cup W$ will be a subspace of V as well. (same proof can be derived when $W\subseteq U$)
+    
+    \item[$\Longleftarrow$]\mbox{}\\
+    We prove it by contradiction. Assuming $U\cup W$ is a subspace of $V$ then we try to show that neither $U\subseteq W$ nor $W\subseteq U$. By having $U\nsubseteq W$ and $W\nsubseteq U$ it is obvious that the subtract of sets are non-empty. Now let $u\in U\setminus W$ and $w\in W\setminus U$. Now assume $u+w\in U$, then we must have $u+w-u\in U$. It is a contradiction since we had assumed that $w\in W\setminus U$. The same statements can be derived when we assume $u+w\in W$. So this is a contradiction. As a result either $U\subseteq W$ or $W\subseteq U$.
+
+\end{itemize}
+
+\vskip1mm\hrule
+\subsubsection*{Exercise 23}
+Counterexample: Let's have $U_1=\{(x,0)\in \R^2: x\in \R\}$ and $U_2=\{(x,1)\in \R^2: x\in \R\}$. Then by letting $W=\{(0,y)\in \R^2: y\in \R\}$, the vector space $V=\R^2$ can be written as direct sums $U_1\oplus W$ or $U_2 \oplus W$, however $U_1\neq U_2$.
+\vskip1mm\hrule
+\subsubsection*{Exercise 24}
+$\R^\R$ denotes any function $f:\R\rightarrow\R$. The function $f$ can be written as sum of even and odd functions:
+\begin{align*}
+    f(x)&=\frac{f(x)+f(-x)}{2} + \frac{f(x)-f(-x)}{2}\\
+    &=f_e(x) + f_o(x)
+\end{align*}
+where $x\in \R$. Since for any $f\in\R^\R$ there exists a unique $f_e+f_o\in U_e+U_o$, we can conclude that $\R^\R=U_e\oplus U_o$.
+\vskip1mm\hrule
+
+\vskip10mm
+\section*{2.A Span and Linear Independence  \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 3}
+To have a list of 3 linearly dependent vectors $v_1, v_2, v_3$ there should exist a nonzero set of coefficients $a_1, a_2, a_3 \in \R$ which make their linear combination equal to zero:
+\begin{align*}
+    a_1(3,1,4)+a_2(2,-3,5)+a_3(5,9,t)&=0
+\end{align*}
+We must choose $t$ such that avoid trivial zero solution for $a_1, a_2, a_3$.
+If $a_1=3$ and $a_2=-2$ and $a_3=1$ then we can see that by letting $t=2$ vectors will be linearly dependent.
+\vskip1mm\hrule
+\subsubsection*{Exercise 6}
+We know that:
+\begin{align*}
+    a_1v_1+a_2v_2+a_3v_3+a_4v_4=0
+\end{align*}
+holds only when $a_1=a_2=a_3=a_4=0$ ($a_1,\dots,a_4\in\F$). Then linear combination for list $v_1-v_2, v_2-v_3, v_3-v_4, v_4$ will be ($b_1,\dots,b_4\in\F$):
+\begin{align*}
+    b_1(v_1-v_2)+b_2(v_2-v_3)+b_3(v_3-v_4)+b_4v_4&=b_1v_1+(b_2-b_1)v_2+(b_3-b_2)v_3+b_4v_4\\
+    &=a'_1v_1+a'_2v_2+a'_3v_3+a'_4v_4
+\end{align*}
+since the list $v_1,\dots,v_4$ is linearly independent, the linear combination of the above will be equal to zero only if $a'_1=a'_2=a'_3=a'_4=0$ ($a'_1,\dots,a'_4\in\F$). Therefore the list $v_1-v_2, v_2-v_3, v_3-v_4, v_4$ is linearly independent as well.
+\vskip1mm\hrule
+\subsubsection*{Exercise 9}
+Counterexample: assume the list $w_1,\dots,w_m$ be equal to $-v_1,\dots,-v_m$. Then list $v_1+w_1,\dots,v_m+w_m$ is equal to $v_1-v_1,\dots,v_m+-v_m$ which only contains the vector $0$ and it is linearly dependent.
+\vskip1mm\hrule
+\subsubsection*{Exercise 11}
+We prove it in two steps. The list of vectors $v_1,\dots, v_m$ is linearly independent.
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\
+    Now we try to prove that if $w\notin span(v_1,\dots, v_m)$, then the list of vectors $v_1,\dots, v_m, w$ is linearly dependent. For the list of dependent vectors we have:
+    \begin{align*}
+        a_1v_1+\dots+a_mv_m+a_{m+1}w=0
+    \end{align*}
+    where not all the $a_i$'s are equal to zero.
+
+    Conditioning on the value of $a_{m+1}$:
+    \begin{itemize}
+        \item if $a_{m+1}=0$: In this case all other $a_i$'s must be zero which shows that $v_1,\dots, v_m, w$ are not linearly dependent. (contradiction)
+        \item if $a_{m+1}\neq0$: In this case we can write $w=-\frac{1}{a_{m+1}}(a_1v_1+\dots+a_mv_m)$, which tells us that $w\in span(v_1,\dots, v_m)$, violating the hypothesis.
+    \end{itemize}
+    Therefore the list of vectors $v_1,\dots, v_m, w$ is linearly independent.
+    
+    \item[$\Longleftarrow$]\mbox{}\\
+    Proving that if the list of vectors $v_1,\dots, v_m, w$ is linearly independent then $w\in span(v_1,\dots, v_m)$. From the definition of span, we know that $w$ can be written as:
+    \begin{align*}
+        w = a_1v_1+\dots+a_mv_m
+    \end{align*}
+    where $a_1,\dots,a_m\in\F$. Then we can see that $a_1v_1+\dots+a_mv_m-w=0$, which violates the linear independence of $v_1,\dots, v_m, w$. As a result $w\notin span(v_1,\dots, v_m)$.
+\end{itemize}
+\vskip1mm\hrule
+\subsubsection*{Exercise 17} 
+$:^\prime$(
+\vskip1mm\hrule
+
+\end{document}
+

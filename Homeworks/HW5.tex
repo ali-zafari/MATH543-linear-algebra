@@ -1,0 +1,317 @@
+\documentclass[12pt, letterpaper]{scrartcl}
+
+
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage[shortlabels]{enumitem} % Use a. in the enumerate
+\usepackage{amsmath} % aligned equations
+\usepackage{graphicx} % include figure
+\usepackage{float} % usage of H for figure float
+\usepackage{amssymb} % \blacksqure
+\usepackage{xhfill} % fill horizontal line
+
+\usepackage{xcolor} % colors
+\usepackage{sectsty} % section coloring
+\sectionfont{\color{blue}}  % sets colour of sections
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\Real}{\mathcal{Re}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\mat}{\mathcal{M}}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\Hom}{\mathcal{L}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\restr}[1]{|_{#1}}
+
+
+\begin{document}
+
+% ### Header - start ###
+\begin{center}
+    \hrule
+    \vspace{0.4cm}
+    { \textbf{{\large Homework 5}} \\ MATH 543 --- Linear Algebra}
+\end{center}
+{ Name: \textbf{Ali Zafari} \hspace{\fill} Spring 2023 } \newline\hrule
+% ### Header - end ###
+
+\section*{5.B Eigenvectors and Upper-Triangular Matrices \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 1}
+\begin{enumerate}[(a)]
+    \item For $I-T$ to be invertible, its composition (both right and left) with its inverse must be identity.
+     \begin{align*}
+         (I-T)(I+T+\dots+T^{n-1})v&=(I-T)(v+Tv+\dots+T^{n-1}v)\\
+         &=v-Tv+Tv-T^2v+T^2v-\dots-T^{n-1}v+T^nv\\
+         &=v
+     \end{align*}
+     and
+      \begin{align*}
+         (I+T+\dots+T^{n-1})(I-T)v&=(I+T+\dots+T^{n-1})(v-Tv)\\
+         &=v-Tv+Tv-T^2v+T^2v-\dots+T^{n-1}v-T^nv\\
+         &=v
+     \end{align*}
+     so $(I-T)$ is invertible with inverse $(I-T)^{-1}=(I+T+\dots+T^{n-1})$.
+     \item
+     Sum of a geometric sequence $1,r,r^2,\dots,r^{n-1}$ is:
+     \begin{align*}
+         1+r+r^2+\dots+r^{n-1}&=\frac{1-r^n}{1-r}\\
+         1+r+r^2+\dots+r^{n-1}&=(1-r)^{-1} \qquad (r^n=0)
+     \end{align*}
+     replacing $r$ with $T$ and having $T^n=0$ resembles what we show in part (a).
+\end{enumerate}
+ 
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 3}
+$T^2=I$ implies either $+1$ or $-1$ is an eigenvalue for $T$ (Exercise 5.A.22). Thus $+1$ is an eigenvalue for $T$ (hypothesis). Thus $\forall v \in V, v\neq 0$:
+\begin{align*}
+    Tv = v\\
+    T=I
+\end{align*}
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 5}
+$p\in\mathcal{P}(\F)$ can be written as
+\begin{align*}
+    p(z)&=a_0+a_1z+a_2z^2+\dots+a_mz^m\\
+\end{align*}
+where $a_0,\dots,a_m, z\in\F$, so
+\begin{align*}
+    p(T)&=a_0I+a_1T+a_2T^2+\dots+a_mT^m
+\end{align*}
+Then
+\begin{align*}
+    Sp(T)S^{-1}&=a_0SIS^{-1}+a_1STS^{-1}+a_2ST^2S^{-1}+\dots+a_mST^mS^{-1}\\
+    &=a_0I+a_1STS^{-1}+a_2ST^2S^{-1}+\dots+a_mST^mS^{-1}\\
+    &=a_0I+a_1STS^{-1}+a_2(STS^{-1})^2+\dots+a_m(STS^{-1})^m\\
+    &=p(STS^{-1})
+\end{align*}
+where for the third equality we used $(STS^{-1})^m=ST^mS^{-1}$.
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 13}
+Consider 2 cases separately:\\
+If $U\subset W$ is a zero subspace of $W$, there exists no eigenvalues for $T$ and the condition holds.\\
+If $U\subset W$ is a non-zero finite-dimensional subspace, then $T_{|U}\in \mathcal{L}(U)$ has at least one eigenvalue (Theorem 5.21) which is a contradiction. Thus $U$ is infinite-dimensional.
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 20}
+By theorem 5.27, there exists basis $v_1, \dots, v_{\dim V}$ such that $T$ has an upper-triangular matrix with respect to it.
+
+By theorem 5.26, $\Span(v_1, \dots, v_k)$ of dimension $k$ is invariant under $T$ for each $k\in\{1,\dots, {\dim V}\}$.
+\vskip1mm\hrule
+
+\clearpage
+\section*{5.C Eigenspaces and Diagonal Matrices \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 1}
+Since $V$ is diagonalizable, there exists a diagonal matrix $\mathcal{M}(T)$ defined on a basis $v_1, \dots, v_n$. Thus $V$ is finite-dimensional.
+
+Then for each $v_i$ exists a $\lambda_i$ such that $Tv_i=\lambda_iv_i$. Now we separate $\lambda_i$'s indices into two disjoint sets: $\lambda_i=0 \quad\forall i\in\{1,\dots, m\}$ and $\lambda_i\neq0 \quad\forall i\in\{m+1,\dots, n\}$.
+
+ Thus 
+\begin{align*}
+    V=\Span(v_1,\dots,v_n)=\Span(v_1,\dots,v_m)\oplus \Span(v_{m+1},\dots,v_n)
+\end{align*}
+since $v_1, \dots, v_m, v_{m+1}, \dots, v_n$ is a basis. 
+\begin{itemize}
+    \item {\color{purple}$\Span(v_1,\dots,v_m)=\Null T$?}\\
+    $\Span(v_1,\dots,v_m)=E(0,T)=\Null(T)$
+
+    \item {\color{purple}$\Span(v_{m+1},\dots,v_n)=\Range T$?}\\
+    For arbitrary $v\in V$ we have $v=a_1v_1+\dots+a_nv_n$ ($a_i\in \F$) then
+    \begin{align*}
+        Tv&=a_1Tv_1+\dots+a_nTv_n\\
+        &=\underbrace{a_{1}Tv_{1}+\dots+a_mTv_m}_{=0}+\underbrace{a_{m+1}Tv_{m+1}+\dots+a_nTv_n}_{\in \Span(v_{m+1},\dots,v_n)}
+    \end{align*}
+    thus $\Range T\subset \Span(v_{m+1},\dots,v_n)$.
+    
+    On the other hand, for every $v_i$ where $i\in \{m+1, \dots, n\}$ we have $v_i=T(\frac{1}{\lambda_i}v_i)\in \Range T$ thus $\Span(v_{m+1},\dots,v_n) \subset\Range T$.
+    
+\end{itemize}
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 2}
+{\color{teal} Aside:
+
+For any invertible $T\in\mathcal{L}(V)$, we have $V=\Null T\oplus\Range T$.
+
+(\emph{proof.} invertible $T\in\mathcal{L}(V)$ implies $\Null T=\{0\}$ and $\Range T=V$ and obviously $\Null T\cap \Range T=\{0\}.$)
+}\\
+{\color{purple}\emph{Counterexample.}} Matrix of invertible $S\in\mathcal{L}(\R^2)$
+\begin{align*}
+    \mathcal{M}(S)= 
+    \left[ 
+    \begin{array}{cc}
+        1 & 1\\ 0 & 1
+    \end{array} 
+    \right]
+\end{align*}
+is non-diagonal, although $\R^2=\Null S \oplus \Range S$.
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 3}
+\begin{enumerate}[(a)]
+    \item $V=\Null T\oplus\Range T$
+    \item $V=\Null T+\Range T$
+    \item $\Null T\cap\Range T=\{0\}$
+\end{enumerate}
+\begin{enumerate}
+    \item {\color{purple}$\mathbf{a\Rightarrow b}$} Trivial by definition of direct sum.
+
+    \item {\color{purple}$\mathbf{b\Rightarrow c}$} Sum of two subspaces of finite-dimensional $V$ has dimension
+    \begin{align*}
+        \dim V&=\dim(\Null T)+\dim(\Range T)-\dim(\Null T\cap\Range T)\\
+        &=\dim V-\dim(\Null T\cap\Range T)
+    \end{align*} where Fundamental Theorem of Linear Maps is used for last equality. Thus $\dim(\Null T\cap\Range T)=0$ so $\Null T\cap\Range T=\{0\}$.
+
+    \item {\color{purple}$\mathbf{c\Rightarrow a}$} For $\Null T+\Range T$ we have
+    \begin{align*}
+        \dim(\Null T+\Range T)&=\dim(\Null T)+\dim(\Range T)-\dim(\Null T\cap\Range T)\\
+        &=\dim V-0
+    \end{align*}
+    thus $\Null T+\Range T=V$ and since $\Null T\cap\Range T=\{0\}$ the sum is direct.
+\end{enumerate}
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 5}
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\
+    $T$ is diagonalizable. So there is a basis on which $\mathcal{M}(T)$ is diagonal.
+    For $\lambda\in \C$:
+    \begin{align*}
+        \mathcal{M}(T-\lambda I)=\mathcal{M}(T)-\lambda \mathcal{M}(I)
+    \end{align*}
+    since both $\mathcal{M}(T)$ and $\mathcal{M}(I)$ are diagonal, then $\mathcal{M}(T-\lambda I)$ is diagonal.
+
+    By using the result of Exercise 5.C.1 we have
+    \begin{align*}
+        V=\Null(T-\lambda I)\oplus\Range(T-\lambda I).
+    \end{align*}
+    
+    \item[$\Longleftarrow$]\mbox{}\\
+    ?
+\end{itemize}
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 8}
+Suppose 2 and 6 are also eigenvalues of T,
+\begin{align*}
+    \dim E(8, T) + \dim E(6, T) + \dim E(2, T) &\leq \dim \F^5\\
+    \dim E(6, T) + \dim E(2, T) &\leq 1
+\end{align*}
+then either $\dim E(6, T)=0$ or $\dim E(2, T)=0$. Thus either 6 or 2 is an NOT an eigenvalue of $T$, so either $T-6I$ or $T-2I$ is invertible, respectively, by theorem 5.6.
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 10}
+Let $0,\lambda_1,\dots,\lambda_m$ denote the full set of the distinct eigenvalues. Then 
+\begin{align*}
+    \underbrace{\dim E(0,T)}_{=\dim\Null T} + \dim E(\lambda_1, T) + \dots + \dim E(\lambda_m,T) &\leq \dim V\\
+    \dim\Null T + \dim E(\lambda_1, T) + \dots + \dim E(\lambda_m,T) &\leq \dim\Null T + \dim\Range T\\
+    \dim E(\lambda_1, T) + \dots + \dim E(\lambda_m,T) &\leq \dim\Range T
+\end{align*}
+where the RHS of 2nd inequality comes from Fundamental Theorem of Linear Maps.
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 15}
+Since $T$ is not diagonalizable, 8 cannot be an eigenvalue of it (Theorem 5.44). Thus $T-8I$ is invertible/injective/surjective (Theorem 5.6). By surjectivity for $v=(17, \sqrt{5}, 2\pi)$ there exists $(x,y,z)\in\C^3$ such that
+\begin{align*}
+    (T-8I)(x,y,z)&=(17, \sqrt{5}, 2\pi)\\
+    T(x,y,z)&=(17+8x, \sqrt{5}+8y, 2\pi+8z)
+\end{align*}
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 16}
+\begin{enumerate}[(a)]
+    \item \emph{proof by induction.}\\
+    $\mathbf{n=1}$: $T^1(0,1)=(1,1)=(F_1,F_2)$\\
+    Assume it holds for $\mathbf{n\leq m-1}$.\\
+    $\mathbf{n=m}$: $T^{m}(0,1)=TT^{m-1}(0,1)=T(F_{m-1},F_{m})=(F_{m},F_{m-1}+F_{m})=(F_{m},F_{m+1})$.
+
+    \item 
+    \begin{align*}
+        T(x,y)&=(\lambda x,\lambda y)\\
+        (y,x+y)&=(\lambda x,\lambda y)\\
+        x+\lambda x &= \lambda (\lambda x)\\
+        \lambda^2-\lambda-1&=0 \quad (x\neq0, y\neq0)\\
+        \lambda&=\frac{1\pm\sqrt{5}}{2}
+    \end{align*}
+
+    \item 
+    \begin{align*}
+        E(\frac{1+\sqrt{5}}{2},T)&=\Null(T-(\frac{1+\sqrt{5}}{2}) I)\\
+        &=\{(x,y)|(y-\frac{1+\sqrt{5}}{2}x, x+\frac{1-\sqrt{5}}{2}y )=0\}\\
+        &=\{(x,y)|y=x(\frac{1+\sqrt{5}}{2})\}
+    \end{align*}
+    then we choose $v_1=(1, \frac{1+\sqrt{5}}{2})$.
+
+    \begin{align*}
+        E(\frac{1-\sqrt{5}}{2},T)&=\Null(T-(\frac{1-\sqrt{5}}{2}) I)\\
+        &=\{(x,y)|(y-\frac{1-\sqrt{5}}{2}x, x+\frac{1+\sqrt{5}}{2}y )=0\}\\
+        &=\{(x,y)|y=x(\frac{1-\sqrt{5}}{2})\}
+    \end{align*}
+    then we choose $v_2=(1, \frac{1-\sqrt{5}}{2})$.
+
+    \item $(0,1)=\frac{1}{\sqrt{5}}v_1-\frac{1}{\sqrt{5}}v_2$ in terms of the new basis. Thus
+    \begin{align*}
+    T^n(0,1)&=(F_n,F_{n+1})\\
+    &=T^n(\frac{1}{\sqrt{5}}v_1-\frac{1}{\sqrt{5}}v_2)\\
+    &=\frac{1}{\sqrt{5}}(T^nv_1-T^nv_2)\\
+    &=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^nv_1-\left(\frac{1-\sqrt{5}}{2}\right)^nv_2\right]\\
+    &=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^n, \left(\frac{1+\sqrt{5}}{2}\right)^{n+1}-\left(\frac{1-\sqrt{5}}{2}\right)^{n+1}\right]
+    \end{align*}
+    thus $F_n=\frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^n\right]$.
+
+    \item It suffices to show the magnitude of distance from $F_n$ to $\frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^n$ is less than $\frac{1}{2}$. Let
+    \begin{align*}
+        d:&=\left|
+        \frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^n-\frac{1}{\sqrt{5}}\left(\frac{1-\sqrt{5}}{2}\right)^n - \frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^n
+        \right|\\
+        &=
+        \left|
+        \frac{1}{\sqrt{5}}\left(\frac{1-\sqrt{5}}{2}\right)^n
+        \right| \\
+        &=
+        \frac{1}{\sqrt{5}}
+        \left|
+        \frac{1-\sqrt{5}}{2}
+        \right|^n\\
+        &=
+        \frac{1}{\sqrt{5}}
+        \left|
+        \frac{2}{1+\sqrt{5}}
+        \right|^n
+    \end{align*}
+    be the distance.
+    
+    Since $\sqrt{5}>2$ then $\frac{1}{\sqrt{5}}<\frac{1}{2}$ and $\frac{2}{1+\sqrt{5}}<\frac{2}{3}$, thus
+    \begin{align*}
+        \frac{1}{\sqrt{5}}
+        \left|
+        \frac{2}{1+\sqrt{5}}
+        \right|^n < \frac{1}{2}(\frac{2}{3})^n <\frac{1}{2}\frac{2}{3} <\frac{1}{2}
+    \end{align*}
+    
+\end{enumerate}
+\vskip1mm\hrule
+
+\end{document}
+

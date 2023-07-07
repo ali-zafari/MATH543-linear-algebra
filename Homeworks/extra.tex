@@ -1,0 +1,92 @@
+\documentclass[12pt, letterpaper]{scrartcl}
+
+
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage[shortlabels]{enumitem} % Use a. in the enumerate
+\usepackage{amsmath} % aligned equations
+\usepackage{graphicx} % include figure
+\usepackage{float} % usage of H for figure float
+\usepackage{amssymb} % \blacksqure
+\usepackage{xhfill} % fill horizontal line
+
+\usepackage{xcolor} % colors
+\usepackage{sectsty} % section coloring
+\sectionfont{\color{blue}}  % sets colour of sections
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\Real}{\mathcal{Re}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\mat}{\mathcal{M}}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\Hom}{\mathcal{L}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\restr}[1]{|_{#1}}
+
+
+\begin{document}
+
+% ### Header - start ###
+\begin{center}
+    \hrule
+    \vspace{0.4cm}
+    { \textbf{{\large Extra Problems}} \\ MATH 543 --- Linear Algebra}
+\end{center}
+{ Name: \textbf{Ali Zafari} \hspace{\fill} Spring 2023 } \newline\hrule
+% ### Header - end ###
+
+% \section*{5.B Eigenvectors and Upper-Triangular Matrices \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{}
+{\color{blue}Let $\dim V=n$. If  $T\in\mathcal{L}(V)$ is nilpotent, then $T^n=0$.}
+\\\\
+$T^j=0$ for some integer $j\geq 1$  thus $\Null T^j=V$.\\
+Growth of $\Null T^k$ with increase of $k$ (non-negative integer) stops at $k=n$.
+\begin{itemize}
+    \item $\mathbf{j<n}$:  since $\Null T^j\subseteq \Null T^n$ then $\Null T^n=V$. 
+
+    \item $\mathbf{j\geq n}$: having $\Null T^n\neq V$ is a contradiction. 
+\end{itemize}
+therefore $\Null T^n=V$ so $T^n=0$.
+\vskip1mm\hrule
+
+
+\subsubsection*{}
+{\color{blue}If $\lambda$ is an eigenvalue for $T\in\mathcal{L}(V)$ then $\lambda^n$ is an eigenvalue for $T^n$.}
+\\\\
+For $v\neq0$ we have $Tv=\lambda v$:
+\begin{align*}
+    T^2v&=T(Tv)=T(\lambda v)=\lambda Tv=\lambda^2v\\
+    T^3v&=T(T^2v)=T(\lambda^2v)=\lambda^2 Tv=\lambda^3v\\
+    &\vdots\\
+    T^nv&=T(T^{n-1}v)=T(\lambda^{n-1}v)=\lambda^{n-1} Tv=\lambda^nv
+\end{align*}
+thus $\lambda^n$ is an eigenvalue for $T^n$.
+\vskip1mm\hrule
+
+
+\subsubsection*{}
+{\color{blue}If $\lambda^n$ is an eigenvalue for $T^n\in\mathcal{L}(V)$ then $\lambda$ is an eigenvalue for $T$?}
+\\\\
+For $v\neq0$ we have $T^nv=\lambda^n v$:
+\begin{align*}
+    (T^n-\lambda^nI)v&=0\\
+    p(T)v&=0
+\end{align*}
+ where $p(z)=z^n-\lambda^n \in \mathcal{P}(\C)$.\\
+ We use factorization $p(z)=(z-\lambda)(z^{n-1}+z^{n-2}\lambda+\dots+z\lambda^{n-2}+\lambda^{n-1})$:
+\begin{align*}
+    p(T)v=(T-\lambda)(T^{n-1}+\lambda T^{n-2}+\dots+\lambda^{n-2}T+\lambda^{n-1})v=0
+\end{align*}
+thus if $(T^{n-1}+\lambda T^{n-2}+\dots+\lambda^{n-2}T+\lambda^{n-1})v\neq0$, then $\lambda$ must be an eigenvalue for $T$.
+\vskip1mm\hrule
+
+\end{document}
+

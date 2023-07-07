@@ -1,0 +1,475 @@
+\documentclass[12pt, letterpaper]{scrartcl}
+
+
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage[shortlabels]{enumitem} % Use a. in the enumerate
+\usepackage{amsmath} % aligned equations
+\usepackage{graphicx} % include figure
+\usepackage{float} % usage of H for figure float
+\usepackage{amssymb} % \blacksqure
+\usepackage{xhfill} % fill horizontal line
+
+\usepackage{colortbl}
+\usepackage{xcolor} % colors
+\usepackage{sectsty} % section coloring
+\sectionfont{\color{blue}}  % sets colour of sections
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\Real}{\mathcal{Re}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\mat}{\mathcal{M}}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\Hom}{\mathcal{L}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\restr}[1]{|_{#1}}
+
+
+\begin{document}
+
+% ### Header - start ###
+\begin{center}
+    \hrule
+    \vspace{0.4cm}
+    { \textbf{{\large Homework 6}} \\ MATH 543 --- Linear Algebra}
+\end{center}
+{ Name: \textbf{Ali Zafari} \hspace{\fill} Spring 2023 } \newline\hrule
+% ### Header - end ###
+
+\section*{8.A Generalized Eigenvectors and Nilpotent Operators \xrfill[2pt]{3pt}[blue]}
+
+\subsubsection*{Exercise 2}
+\begin{itemize}
+    \item \textbf{Eigenvalues.}
+    \begin{align*}
+        Tv=\lambda v\\
+        T(v_1, v_2)-\lambda(v_1, v_2) = 0\\
+        (-v_2 -\lambda v_1, v_1-\lambda v_2)=0\\
+        \lambda = i, -i
+    \end{align*}
+    
+    \item \textbf{Generalized Eigenspaces.}
+    There is enough (2) distinct eigenvalues, so generalized eigenspaces are equal to eigenspaces.
+
+    \begin{align*}
+        E(i, T)=\Span(
+        \left(
+        \begin{array}{c}
+          i\\
+          1
+        \end{array}
+        \right)
+        )
+    \end{align*}
+
+    \begin{align*}
+        E(-i, T)=\Span(
+        \left(
+        \begin{array}{c}
+          1\\
+          i
+        \end{array}
+        \right)
+        )
+    \end{align*}
+\end{itemize}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 3}
+Let $n=\dim V$, by induction on $n$ we prove that $\Null(T-\lambda I)^n=\Null(T^{-1}-\frac{1}{\lambda}I)^n$.
+\begin{itemize}
+    \item $\mathbf{n=1}$. Let $v\in\Null(T-\lambda I)$ then $Tv=\lambda v$ or equivalently $T^{-1}v=\frac{1}{\lambda}v$ thus $v\in\Null(T^{-1}-\frac{1}{\lambda}I)$. For $w\in\Null(T^{-1}-\frac{1}{\lambda}I)$ same steps leads to $w\in\Null(T-\lambda I)$.
+    \item \textbf{Let the hypothesis be correct $\forall i\quad 1\leq i \leq n-1$.}\\
+    Let $v\in \Null(T-\lambda I)^n$:
+    \begin{align*}
+        (T-\lambda I)^nv=0 \Rightarrow (T-\lambda I)^{n-1}((T-\lambda I)v)=0 \Rightarrow (T-\lambda I)v\in \Null(T-\lambda I)^{n-1} 
+    \end{align*}
+    from induction hypothesis:
+    \begin{align*}
+        (T-\lambda I)v\in \Null(T^{-1}-\frac{1}{\lambda}I)^{n-1}
+    \end{align*}
+    so
+    \begin{align*}
+        (T^{-1}-\frac{1}{\lambda}I)^{n-1}(T-\lambda I)v=0 \Rightarrow (T-\lambda I)(T^{-1}-\frac{1}{\lambda}I)^{n-1}v=0
+    \end{align*}
+    thus
+    \begin{align*}
+        (T^{-1}-\frac{1}{\lambda}I)^{n-1}v\in\Null(T-\lambda I)=\Null(T^{-1}-\frac{1}{\lambda}I)
+    \end{align*}
+    and equivalently
+    \begin{align*}
+        (T^{-1}-\frac{1}{\lambda}I)(T^{-1}-\frac{1}{\lambda}I)^{n-1}v&=0\\
+        (T^{-1}-\frac{1}{\lambda}I)^{n}v&=0\\
+        v\in(T^{-1}-\frac{1}{\lambda}I)^{n}
+    \end{align*}
+    thus
+    \begin{align*}
+        \Null(T-\lambda I)^n\subseteq\Null(T^{-1}-\frac{1}{\lambda}I)^{n}
+    \end{align*}
+    the same steps can be followed to show the inclusion in the other direction and we have:
+    \begin{align*}
+        \Null(T-\lambda I)^n=\Null(T^{-1}-\frac{1}{\lambda}I)^n
+    \end{align*}
+\end{itemize}
+
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 4}
+Suppose $v\neq0$ and $v\in G(\alpha, T)\cap G(\beta, T)$. Since $v$ is an eigenvector for two generalized eigenspaces of distinct eigenvalues, it is a contradiction with 8.13. Therefore $v=0$.\\\\
+({\color{teal}8.13: Generalized eigenvectors corresponding to distinct eigenvalues are linearly independent.})
+\vskip1mm\hrule
+
+% \subsubsection*{Exercise 10}
+% \vskip1mm\hrule
+
+% \subsubsection*{Exercise 13}
+% \vskip1mm\hrule
+
+
+\section*{8.B Decomposition of an Operator \xrfill[2pt]{3pt}[blue]}
+
+\subsubsection*{Exercise 1}
+$G(0, N)=\Null(N)^{\dim V}$ and since zero is the only eigenvalue $V=\Null(N)^{\dim V}$ or equivalently $N^{\dim V}=0 \quad\forall v\in V$. Thus $N $ is nilpotent. 
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 2}
+We consider a zero eigenvalue and a pair of complex conjugate eigenvalues:
+\begin{align*}
+    T(x,y,z)=(0,z,-y)
+\end{align*}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 3}
+Let $v\in V$ be eigenvector of $T$ corresponding to eigenvalue $\lambda$. There exists $u\in V$ such that $v=Su$. (S is surjective)
+\begin{align*}
+    S^{-1}TSu=S^{-1}Tv=S^{-1}(\lambda v)=\lambda u
+\end{align*}
+thus every eigenvalue for $T$ is also an eigenvalue for $S^{-1}TS$.
+\vskip1mm\hrule
+
+% \subsubsection*{Exercise 8}
+% \vskip1mm\hrule
+
+\subsubsection*{Exercise 10}
+Look at LADW pp. 264.
+$N^j=0$ for some $j\leq n$.\\
+Since $N$ is normal, there exists a basis of $V$ consisting of orthonormal eigenvectors $e_1, \dots, e_n$
+\\?
+\vskip1mm\hrule
+
+\section*{8.C Characteristic and Minimal Polynomials \xrfill[2pt]{3pt}[blue]}
+
+\subsubsection*{Exercise 2}
+For $T$
+\begin{align*}
+    1 \leq \dim G(5,T) \leq n-1\\
+    1 \leq \dim G(6,T) \leq n-1
+\end{align*}
+therefore $(T-6I)^{n-1}(T-6I)^{n-1}$ is a multiple of characteristic polynomial $q(T)$ and thus equal to zero.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 4}
+\begin{center}
+$\chi_T(z)=(z-1)(z-5)^3$ and $p(z)=(z-1)(z-5)^2$
+\end{center}
+\begin{align*}
+     A=
+     \left(
+     \begin{array}{cccc}
+          1&0&0&0\\
+          0&5&0&0\\
+          0&0&5&1\\
+          0&0&0&5
+     \end{array}
+     \right)
+\end{align*}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 5}
+\begin{center}
+$\chi_T(z)=z(z-1)^2(z-3)=p(z)$
+\end{center}
+\begin{align*}
+     A=
+     \left(
+     \begin{array}{cccc}
+          0&0&0&0\\
+          0&1&1&0\\
+          0&0&1&0\\
+          0&0&0&3
+     \end{array}
+     \right)
+\end{align*}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 6}
+\begin{center}
+$\chi_T(z)=z(z-1)^2(z-3)$ and $p(z)=z(z-1)(z-3)$
+\end{center}
+\begin{align*}
+     A=
+     \left(
+     \begin{array}{cccc}
+          0&0&0&0\\
+          0&1&0&0\\
+          0&0&1&0\\
+          0&0&0&3
+     \end{array}
+     \right)
+\end{align*}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 8}
+Let $\chi_T$ be the characteristic polynomial of $T$.
+\begin{align*}
+    \quad&T\text{ is invertible}\\
+    \Longleftrightarrow\quad&\text{0 is not an eigenvlue of }T\\
+    \Longleftrightarrow\quad&\chi_T(0)\neq0\\
+    \Longleftrightarrow\quad&\text{constant term of }\chi_T(z) \text{ is not zero}
+\end{align*}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 9}
+We have $p(T)=4+5T-6T^2-7T^3+2T^4+T^5=0$.\\Then $T^{-5}p(T)=4T^{-5}+5T^{-4}-6T^{-3}-7T^{-2}+2T^{-1}+I=0$. Thus the minimal polynomial of $T^{-1}$ is $p(T^{-1})=T^{-5}+1.25T^{-4}-1.5T^{-3}-1.75T^{-2}+0.5T^{-1}+0.25I$
+\vskip1mm\hrule
+
+% \subsubsection*{Exercise 13}
+% \vskip1mm\hrule
+
+% \subsubsection*{Exercise 20}
+% \vskip1mm\hrule
+
+
+\section*{8.D Jordan Form \xrfill[2pt]{3pt}[blue]}
+
+\subsubsection*{Exercise 1}
+\begin{itemize}
+    \item \textbf{Characteristic Polynomial.} Since $N$ has only zero eigenvalues and multiplicity of it is 4 then:
+    \begin{align*}
+        \chi_N(z)=z^4
+    \end{align*}
+    \item \textbf{Minimal Polynomial.} Since $N^3\neq0$, then the minimal polynomial is $p(N)=N^4$.
+\end{itemize}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 2}
+\begin{itemize}
+    \item \textbf{Characteristic Polynomial.} Since $N$ has only zero eigenvalues and multiplicity of it is 6 then:
+    \begin{align*}
+        \chi_N(z)=z^6
+    \end{align*}
+    \item \textbf{Minimal Polynomial.} Since $N^3=0$, then the minimal polynomial is $p(N)=N^3$.
+\end{itemize}
+\vskip1mm\hrule
+
+% \subsubsection*{Exercise 7}
+% \vskip1mm\hrule
+
+\section*{Not from Axler's Book. \xrfill[2pt]{3pt}[blue]}
+{\color{violet}
+Find a Jordan basis and the Jordan normal form for $A$.
+\begin{align*}
+     A=
+     \left(
+     \begin{array}{cccc}
+          4&-4&-11&11\\
+          3&-12&-42&42\\
+          -2&12&37&-34\\
+          -1&7&20&-17
+     \end{array}
+     \right)
+\end{align*}
+}
+\begin{itemize}
+    \item \textbf{Eigenvalues.}
+    \begin{align*}
+        det(A-\lambda I)&=0\\
+        (\lambda-3)^4&=0\\
+        \lambda&=3 \text{ with multiplicity of 4}
+    \end{align*}
+
+    \item \textbf{Number of blocks.} dimension of eigenspace $E(3, T)=\Null(T-3I)\\$ determines number of blocks in Jordan form.
+    \begin{align*}
+        \Null(A-3I)
+        &=
+        \Null\left(
+        \begin{array}{cccc}
+          1&-4&-11&11\\
+          3&-15&-42&42\\
+          -2&12&34&-34\\
+          -1&7&20&-20
+        \end{array}
+        \right)\\
+        &=
+        \Null\left(
+        \begin{array}{cccc}
+          1&-4&-11&11\\
+          0&-3&-9&9\\
+          0&4&12&-12\\
+          0&3&9&-9
+        \end{array}
+        \right) \quad\text{(row reduction)}\\
+        &=
+        \Null\left(
+        \begin{array}{cccc}
+          1&-4&-11&11\\
+          0&-3&-9&9\\
+          0&0&0&0\\
+          0&0&0&0
+        \end{array}
+        \right) \quad\text{(row reduction)}
+    \end{align*}
+    thus the number of blocks is 2.
+    \begin{align*}
+        E(3, T)=\Span(
+        \left(
+        \begin{array}{c}
+          1\\
+          3\\
+          0\\
+          1
+        \end{array}
+        \right)
+        ,
+        \left(
+        \begin{array}{c}
+          -1\\
+          -3\\
+          1\\
+          0
+        \end{array}
+        \right)
+        )
+    \end{align*}
+    \item \textbf{Jordan Form.} thus the Jordan form is one of the below:
+    \begin{align*}
+     \left(
+     \begin{array}{cccc}
+          \cellcolor{lightgray}3&0&0&0\\
+          0&\cellcolor{lightgray}3&\cellcolor{lightgray}1&\cellcolor{lightgray}0\\
+          0&\cellcolor{lightgray}0&\cellcolor{lightgray}3&\cellcolor{lightgray}1\\
+          0&\cellcolor{lightgray}0&\cellcolor{lightgray}0&\cellcolor{lightgray}3
+     \end{array}
+     \right)
+    \text{ or }
+    \left(
+     \begin{array}{cccc}
+          \cellcolor{lightgray}3&\cellcolor{lightgray}1&0&0\\
+          \cellcolor{lightgray}0&\cellcolor{lightgray}3&0&0\\
+          0&0&\cellcolor{lightgray} 3&\cellcolor{lightgray}1\\
+          0&0&\cellcolor{lightgray}0&\cellcolor{lightgray}3
+     \end{array}
+     \right)
+\end{align*}
+    \item \textbf{Generalized Eigenspace.}
+    \begin{align*}
+        \Null(A-3I)^2
+        &=
+        \Null\left(
+        \begin{array}{cccc}
+          0&1&3&-3\\
+          0&3&9&-9\\
+          0&-2&-6&6\\
+          0&-1&-3&3
+        \end{array}
+        \right)\\
+        &=
+        \Null\left(
+        \begin{array}{cccc}
+          0&1&3&-3\\
+          0&0&0&0\\
+          0&0&0&0\\
+          0&0&0&0
+        \end{array}
+        \right) \quad\text{(row reduction)}
+    \end{align*}
+    Since $\dim\Null(A-3I)^2=3<4$, we continue for $\Null(A-3I)^3$:
+    \begin{align*}
+        \Null(A-3I)^3
+        &=
+        \Null\left(
+        \begin{array}{cccc}
+          0&0&0&0\\
+          0&0&0&0\\
+          0&0&0&0\\
+          0&0&0&0
+        \end{array}
+        \right)
+    \end{align*}
+    Thus $\dim\Null(A-3I)^3=4$.
+
+
+    Therefore Jordan Normal form consists of two blocks of 1x1 and 3x3 as below:
+    \begin{align*}
+     J=\left(
+     \begin{array}{cccc}
+          \cellcolor{lightgray}3&0&0&0\\
+          0&\cellcolor{lightgray}3&\cellcolor{lightgray}1&\cellcolor{lightgray}0\\
+          0&\cellcolor{lightgray}0&\cellcolor{lightgray}3&\cellcolor{lightgray}1\\
+          0&\cellcolor{lightgray}0&\cellcolor{lightgray}0&\cellcolor{lightgray}3
+     \end{array}
+     \right)
+     \tag{$\clubsuit$}
+     \label{jordan}
+     \end{align*}
+    \item \textbf{Jordan Basis.} To choose the first eigenvector, we look for $v_1\neq0$ such that $(A-3I)^3v_1=0$ and $(A-3I)^2v_1\neq0$.
+    Then we choose $v_4\neq0$ such that $(A-3I)v_4=0$.
+    \begin{align*}
+        &v_1
+        =
+        \left(
+        \begin{array}{c}
+          0\\
+          1\\
+          0\\
+          0
+        \end{array}
+        \right)\\
+        &v_2=(A-3I)v_1=\left(
+        \begin{array}{c}
+          -4\\
+          -15\\
+          12\\
+          7
+        \end{array}
+        \right)\\
+        &v_3=(A-3I)^2v_1=\left(
+        \begin{array}{c}
+          1\\
+          3\\
+          -2\\
+          -1
+        \end{array}
+        \right)\\
+        &v_4=\left(
+        \begin{array}{c}
+          1\\
+          3\\
+          0\\
+          1
+        \end{array}
+        \right)\\
+    \end{align*}
+    To have exactly the Jordan form as in (\ref{jordan}), the order of the elements in matrix P below matters and should be exactly like $[\quad v_4\quad|\quad(A-3I)^2v_1\quad|\quad(A-3I)v_1\quad|\quad v_1\quad]$, i.e.,
+    \begin{align*}
+        P=\left(
+        \begin{array}{cccc}
+          1&1&-4&0\\
+          3&3&-15&1\\
+          0&-2&12&0\\
+          1&-1&7&0
+        \end{array}
+        \right)
+    \end{align*}
+    Then we have for sure $J = P^{-1}AP$ with $J$ as showed in (\ref{jordan}).
+\end{itemize}
+\end{document}
+

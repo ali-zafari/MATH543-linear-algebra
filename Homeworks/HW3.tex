@@ -1,0 +1,289 @@
+\documentclass[12pt, letterpaper]{scrartcl}
+
+
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage[shortlabels]{enumitem} % Use a. in the enumerate
+\usepackage{amsmath} % aligned equations
+\usepackage{graphicx} % include figure
+\usepackage{float} % usage of H for figure float
+\usepackage{amssymb} % \blacksqure
+\usepackage{xhfill} % fill horizontal line
+
+\usepackage{xcolor} % colors
+\usepackage{sectsty} % section coloring
+\sectionfont{\color{blue}}  % sets colour of sections
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\Real}{\mathcal{Re}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\mat}{\mathcal{M}}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\Hom}{\mathcal{L}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\restr}[1]{|_{#1}}
+
+
+\begin{document}
+
+% ### Header - start ###
+\begin{center}
+    \hrule
+    \vspace{0.4cm}
+    { \textbf{{\large Homework 3}} \\ MATH 543 --- Linear Algebra}
+\end{center}
+{ Name: \textbf{Ali Zafari} \hspace{\fill} Spring 2023 } \newline\hrule
+% ### Header - end ###
+
+\section*{3.D Invertibility and Isomorphic Vector Spaces \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 7}
+\begin{enumerate}[(a)]
+    \item 
+    Three conditions for $E$ to be a subspace $\mathcal{L}(V,W)$:
+    \begin{enumerate}[1.]
+        \item \textbf{additive identity} Obviously linear map $0\in \mathcal{L}(V,W)$ is a member of $E$.
+        \item \textbf{closed under addition} Let $T_1,T_2\in E$:
+        \begin{align*}
+            (T_1+T_2)v=T_1v+T_2v=0+0=0
+        \end{align*}
+        therefore $T_1+T_2\in E$.
+        \item \textbf{closed under scalar multiplication} Let $T\in E$ and $\lambda\in\F$
+        \begin{align*}
+            (\lambda T)v=\lambda Tv=\lambda 0=0
+        \end{align*}
+        therefore $\lambda T\in E$.
+    \end{enumerate}
+
+    \item 
+    Let's extend $v$ to a basis $v, v_2, \dots, v_n$. And assume $w_1, \dots, w_m$ is a basis for $W$. Then, $\mathcal{M}$ is an isomorphism between $\mathcal{L}(V,W)$ and $\F^{m,n}$. Having $Tv=0$ is equivalent to have first column of $\mathcal{M}$ be zero. Therefore $\dim E=m(n-1)$.
+    
+\end{enumerate}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 10}
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\
+    \begin{align*}
+        ST=I \Longrightarrow TS=I
+    \end{align*}
+    Let $v\in V$ then $Tv=u\in V$:
+    \begin{align*}
+        Tv&=u\\
+        STv&=Su\\
+        Iv&=Su\\
+        v&=Su\\
+        Tv&=TSu\\
+        u&=TSu\\
+    \end{align*}
+    therefore $TS=I$.
+    
+    \item[$\Longleftarrow$]\mbox{}\\
+    \begin{align*}
+        TS=I \Longrightarrow ST=I
+    \end{align*}
+    Let $v\in V$ then $Sv=u\in V$:
+    \begin{align*}
+        Sv&=u\\
+        TSv&=Tu\\
+        Iv&=Tu\\
+        v&=Tu\\
+        Sv&=STu\\
+        u&=STu\\
+    \end{align*}
+    therefore $ST=I$.
+
+\end{itemize}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 19}
+\begin{enumerate}[(a)]
+    \item 
+
+    Assume $p\in \mathcal{P}_n(\R)$ is of degree $n$. Then arbitrary $T:\mathcal{P}(\R)\rightarrow\mathcal{P}(\R)$ can be thought as $T_n:\mathcal{P}_n(\R)\rightarrow\mathcal{P}_n(\R)$ due to $\deg Tp\leq \deg p$.\\$\mathcal{P}_n(\R)$ is finite dimensional and $T_n$ is an operator on it, so injectivity of $T_n$ implies its surjectivity.
+    
+    \item \emph{proof by contradiction.}\\Let $\deg Tp \neq \deg p$ for \textbf{invertible} operator $T\in\mathcal{L}(\mathcal{P}(\R))$. Then $\deg Tp \leq \deg p$ translates to $\deg Tp < \deg p$.\\But any linear map to a smaller dimensional space is \textbf{not injective} (\emph{contradiction}). Therefore we must have $\deg Tp = \deg p$.
+\end{enumerate}
+\vskip1mm\hrule
+
+\clearpage
+\section*{3.E Products and Quotients of Vector Spaces \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 2}
+Since $V_1\times\dots\times V_m$ is finite-dimensional it has a basis of length
+\begin{align*}
+    \dim V_1+\dots+\dim V_m&<\infty\\
+    \dim V_i&<\infty \quad (\dim V_i\geq 0) \quad\forall i  
+\end{align*}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 8}
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\
+    A is an affine subset of V. Then exists subspace $U$ of $V$ such that $A=a+U$ where $a\in V$.
+
+    For $v,w\in A$ there exists $u_1,u_2\in U$ such that $v=a+u_1$ and $w=a+u_2$.
+
+    $\forall \lambda \in \F$:
+    \begin{align*}
+        \lambda v+(1-\lambda)w=\lambda(a+u_1)+(1-\lambda)(a+u_2)=\underbrace{a+\underbrace{\lambda u_1+(1-\lambda)u_2}_{\in U}}_{\in A}
+    \end{align*}
+    
+    \item[$\Longleftarrow$]\mbox{}\\
+    $\lambda v+(1-\lambda)w\in A \quad \forall v,w\in A , \forall\lambda\in\F$ by choosing $a\in A$ we define $U\triangleq-a+A$.\\
+    
+    For $U$ to be a subspace of $V$:
+    \begin{enumerate}
+        \item \textbf{additive identity}. 
+        
+        Obviously $-a\in A$, so $0\in U$.
+        
+        \item \textbf{closed scalar multiplication}.
+
+        Let $u\in U$ then exists $b\in A$ such that $u=-a+b$:
+        \begin{align*}
+            \lambda b + (1-\lambda)a &\in A\\
+            a + \lambda(-a+b)
+            %\underbrace{2[\frac{1}{2}\underbrace{(2-\lambda )a}_{\in A}+(1-\frac{1}{2})\underbrace{\lambda b)}_{\in A}]}_{\in A}
+            &\in A\\
+            \lambda(\underbrace{-a+b}_{=u})&\in \underbrace{-a+A}_{= U}
+        \end{align*}
+        
+        \item \textbf{closed addition}.
+        
+        Let $u_1, u_2\in U$, then exist $a_1, a_2\in A$ such that $u_1=-a+a_1$ and $u_2=-a+a_2$.
+        \begin{align*}
+            u_1+u_2=-2a+a_1+a_2=2(-a+\frac{1}{2}a_1+\frac{1}{2}a_2)=\underbrace{2(\underbrace{-a+\underbrace{\frac{1}{2}a_1+(1-\frac{1}{2})a_2}_{\in A}}_{\in U})}_{\in U \text{  (closed scalar mult.)}}
+        \end{align*}
+        
+    \end{enumerate}
+    
+\end{itemize}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 11}
+\begin{enumerate}[(a)]
+    \item 
+    Let $v,w\in A$
+    \begin{align*}
+        v&=a_1v_1+\dots+a_mv_m\\
+        w&=b_1v_1+\dots+b_mv_m
+    \end{align*}
+    where $a_1,\dots,a_m,b_1,\dots,b_m\in\F$ and $\sum_{i=1}^m a_i =\sum_{i=1}^m b_i=1$.
+    
+    $\forall \lambda \in \F$:
+    \begin{align*}
+        \lambda v+(1-\lambda)w&=\lambda(a_1v_1+\dots+a_mv_m)+(1-\lambda)(b_1v_1+\dots+b_mv_m)\\
+        &=\underbrace{(\lambda a_1+(1-\lambda)b_1) v_1 + \dots + (\lambda a_m+(1-\lambda)b_m)v_m}_{\in A \text{ (by definition of $A$, since } \sum_{i=1}^m\lambda a_i+(1-\lambda)b_i=1)}
+    \end{align*}
+    By using the result of \textbf{Exercise 8}, $A$ will be an affine subset of $V$.
+    \item Let $v\in V$ and $U$ is a subspace of $V$, such that $v_1,\dots,v_m\in v+U$. Therefore exists $u_1, \dots, u_m\in U$ such that $v_i=v+u_i \quad\forall i=1,\dots,n$.\\\\
+    Assume $\lambda_1,\dots, \lambda_m\in\F$ such that $\sum_{i=1}^m\lambda_i=1$, then
+    \begin{align*}
+    \underbrace{\lambda_1v_1+\dots+\lambda_mv_m}_{\text{arbitrary element in }A}&=\lambda_1(v+u_1)+\dots+\lambda_m(v+u_m)\\
+    &=(\lambda_1+\dots+\lambda_m)v + \lambda_1u_1+\dots+\lambda_mu_m\\
+    &=\underbrace{v+\underbrace{\lambda_1u_1+\dots+\lambda_mu_m}_{\in U}}_{\in v+U}
+    \end{align*}
+    Therefore $A\subset v+U$.
+    
+    \item 
+    Let $v\in A$:
+    \begin{align*}
+        v&=a_1v_1+\dots+a_mv_m=(1-\sum_{i=2}^m a_i)v_1+a_2v_2+\dots+a_mv_m\\
+        &=v_1+a_2(v_2-v_1)+a_3(v_3-v_1)+\dots+a_m(v_m-v_1)
+    \end{align*}
+    %vectors $v_2-v_1, \dots, v_m-v_1$ are linearly independent and a basis for defined space 
+    Let $U\triangleq span(v_2-v_1, \dots, v_m-v_1)$. Therefore $v=v_1+U$. As a result $A\subset v_1+U$.
+
+    Now suppose $w\in v_1+U$ and $b_2, \dots, b_m\in \F$
+    \begin{align*}
+        w&=v_1+b_2(v_2-v_1)+\dots+b_m(v_m-v_1)\\
+        &=(1-\sum_{i=2}^m b_i)v_1+b_2v_2+\dots+b_mv_m
+    \end{align*}
+    since $1-\sum_{i=2}^m b_i+ b_2+\dots+b_m=1$, then $w\in A$ meaning that $v_1+U\subset A$.
+
+    As a result $A=v_1+U$ and obviously $\dim U\leq m-1$.
+\end{enumerate}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 12}
+$V/U$ has basis of $v_1+U, \dots, v_n+U$. $\forall v\in V \quad \exists a_1, \dots,a_n\in\F$ such that
+\begin{align*}
+    v+U=\sum_{i=1}^n a_i(v_i+U)\Rightarrow v-\sum_{i=1}^n a_iv_i\in U
+\end{align*}
+Let's define $T:V\rightarrow U\times V/U$ then $Tv=(v-\sum_{i=1}^n a_iv_i, \sum_{i=1}^n a_i(v_i+U))\quad\forall v\in V$.\\
+
+We will show $T$ is an isomorphism.
+\begin{itemize}
+    \item \textbf{linearity}.
+    $\forall x,y \in V$:
+    \begin{align*}
+        x+U=\sum_{i=1}^n b_i(v_i+U)\\
+        y+U = \sum_{i=1}^n c_i(v_i+U)
+    \end{align*}
+    where $b_1, \dots, b_n, c_1, \dots, c_n\in\F$. Their linear combination is $d_1(x+U)+d_2(y+U)=\sum_{i=1}^n (d_1b_i+d_2c_i)(v_i+U)$ where $d_1,d_2\in\F$.
+
+    So
+    \begin{align*}
+        T(d_1x+d_2y)&=(d_1x+d_2y-\sum_{i=1}^n (d_1b_i+d_2c_i)v_i, \sum_{i=1}^n (d_1b_i+d_2c_i)(v_i+U))\\
+        &=d_1Tx+d_2Ty
+    \end{align*}
+    
+    
+    \item \textbf{injectivity}.
+
+    If $Tv=0$, then $v=0$, as shown below
+    \begin{align*}
+        Tv=(\underbrace{v-\sum_{i=1}^n a_iv_i, \underbrace{\sum_{i=1}^n a_i(v_i+U)}_{a_i=0 \quad \forall i \text{ (basis)}}}_{v=0})=(0,0)
+    \end{align*}
+    Therefore null$T=\{0\}$.
+    
+    \item \textbf{surjectivity}.
+    Let for $u\in U$ we had $Tv = (u, \sum_{i=1}^n a_i(v_i+U)) \in U\times V/U$ where $v\in V$. It is clear that v is uniquely determined as $v=u+\sum_{i=1}^n a_iv_i$.
+\end{itemize}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 17}
+Let $v_1+U,\dots,v_n+U$ be a basis of $V/U$. Define the spanning list $W\triangleq span(v_1,\dots,v_n)$. Let $a_1,\dots,a_n\in\F$ such that
+\begin{align*}
+    a_1v_1+\dots+a_nv_n=0
+\end{align*}
+since $v_1+U,\dots,v_n+U$ are linearly independent, $a_1(v_1+U)+\dots+a_n(v_n+U)=a_1v_1+\dots+a_nv_n +U$ is zero only when $a_1=\dots=a_n=0$. Therefore $\dim W = \dim V/U$.\\
+
+To have $V=U\oplus W$:
+\begin{enumerate}
+    \item $\mathbf{V= U+ W}$.
+
+    For $v\in V$ exists $b_1,\dots,b_n\in\F$ such that $v+U=b_1(v_1+U)+\dots+b_n(v_n+U)$. Therefore $v-\sum_{i=1}^nb_iv_i\in U$. So
+    \begin{align*}
+        v = \underbrace{(v-\sum_{i=1}^nb_iv_i)}_{\in U} + \underbrace{\sum_{i=1}^nb_iv_i}_{\in W}
+    \end{align*}
+    meaning that $v\in U+W$ hence $V\subset U+W$. 
+
+    Since $U$ and $W$ are subspaces of $V$, $U+W\subset V$.
+    
+    \item %$\mathbf{U\cap W=\{0\}}$.
+    $\mathbf{\dim V = \dim U + \dim W}$.
+
+    We showed $V=U+W$. We also know
+    \begin{align*}
+        \dim V/U &= \dim V -\dim U\\
+        \dim W &=  \dim V -\dim U\\
+        \dim V &=  \dim U +\dim W\\
+    \end{align*}
+
+    therefore $V=U\oplus W$.
+    % Let $w\in U\cap W$, exists $a_1,\dots,a_n$ such that $w=a_1v_1+\dots+a_nv_n$, so $w+U=a_1(v_1+U)\dots+(a_nv_n+U)$.
+
+    % On the other hand, since $w\in U$, then $w+U=0+U$, as a result $a_1=\dots=a_n=0$ which implies $w=0$.
+\end{enumerate}
+\vskip1mm\hrule
+
+\end{document}
+

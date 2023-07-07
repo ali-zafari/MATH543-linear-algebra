@@ -1,0 +1,234 @@
+\documentclass[12pt, letterpaper]{scrartcl}
+
+
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage[shortlabels]{enumitem} % Use a. in the enumerate
+\usepackage{amsmath} % aligned equations
+\usepackage{graphicx} % include figure
+\usepackage{float} % usage of H for figure float
+\usepackage{amssymb} % \blacksqure
+\usepackage{xhfill} % fill horizontal line
+
+\usepackage{xcolor} % colors
+\usepackage{sectsty} % section coloring
+\sectionfont{\color{blue}}  % sets colour of sections
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\Real}{\mathcal{Re}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\mat}{\mathcal{M}}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\Hom}{\mathcal{L}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\restr}[1]{|_{#1}}
+
+
+\begin{document}
+
+% ### Header - start ###
+\begin{center}
+    \hrule
+    \vspace{0.4cm}
+    { \textbf{{\large Homework 4}} \\ MATH 543 --- Linear Algebra}
+\end{center}
+{ Name: \textbf{Ali Zafari} \hspace{\fill} Spring 2023 } \newline\hrule
+% ### Header - end ###
+
+\section*{4 Polynomials \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 5}
+Let $T:\mathcal{P}_m(\F)\rightarrow\F^{m+1}$
+be defined as $T(p)=(p(z_1), \dots, p(z_{m+1}))$. T is trivially linear. Since $\dim\mathcal{P}_m(\F)=\dim\F^{m+1}$, there is an isomorphism between the two spaces.
+
+So, there is an invertible $T$ that:
+\begin{itemize}
+    \item by \emph{surjectivity} of $T$, $\quad\forall (w_1,\dots, w_{m+1})\in \F^{m+1}$ there exists a $p\in\mathcal{P}_m(\F)$.
+    \item and p is unique due to \emph{injectivity} of $T$.
+\end{itemize}
+ 
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 6}
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\
+    $p\in\mathcal{P}(\C)$ has $m$ distinct zeros.\\$p$ can be factorized: $p=c(z-\lambda_1)\dots(z-\lambda_m)$ s.t. $c,\lambda_1,\dots,\lambda_m\in\C$ ($\lambda_i$'s are distinct). $p$ can be written as $p(z)=(z-\lambda_i)q(z)$ s.t. $q(\lambda_i)\neq0$. Differentiating results in $p'(z)=q(z)+(z-\lambda_i)q'(z)$. Therefore for \underline{no $i$}, $p'(\lambda_i)=0$.
+    
+    \item[$\Longrightarrow$]\mbox{}\\
+    $p$ and $p'$ have no zeros in common.\\By definition $p$ has $m$ roots. Let p have a root at $z=\lambda_i$ so $p(z)=(z-\lambda_i)q_i(z)$, where $q_i(z)$ could be zero at $z=\lambda_i$. Then $p'(z)=q_i(z)+(z-\lambda_i)q_i'(z)$. If we have $q_i(\lambda_i)=0$, then $p$ and $p'$ share the root $\lambda_i$, a \emph{contradiction}. Therefore $p$ has $m$ \underline{distinct} roots.
+\end{itemize}
+\vskip1mm\hrule
+
+\section*{5.A Invariant Subpspaces \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 1}
+\begin{enumerate}[(a)]
+    \item 
+    Let $u\in U$, so $u\in\Null T$ and $Tu=0\in U$ ($U$ is a subspace). $U$ in invariant under $T$.
+    
+    \item 
+    Let $u\in U$, then $Tu\in\Range T$ so $Tu\in U$. $U$ in invariant under $T$.
+\end{enumerate}
+\vskip1mm\hrule
+
+
+\subsubsection*{Exercise 3}
+Let $v\in\Range S$, so exists $u\in V$ s.t. $Su=v$. Then $Tv=T(Su)=TSu=STu=S(Tu)\in\Range S$. Therefore $\Range S$ is invariant under $T$.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 7}
+\begin{align*}
+    T(x, y)&=\lambda(x,y)\\
+    (-3y,x)&=(\lambda x,\lambda y)
+\end{align*}
+Then $-3y=\lambda x$ and $x=\lambda y$. So $\lambda^2=-3$, and there is no $\lambda\in\R$ satisfying the equation. $T$ has no eigenvalues and thus no eigenvectors.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 9}
+\begin{align*}
+    T(z_1, z_2, z_3)&=\lambda(z_1, z_2, z_3)\\
+    (2z_2, 0, 5z_3)&=(\lambda z_1,\lambda z_2, \lambda z_3)
+\end{align*}
+then we have $2z_2=\lambda z_1$, $0=\lambda z_2$ and $5z_3=\lambda z_3$. $\lambda=5$ and $\lambda=0$ are eigenvalues with eigenvectors $(0,0,y) \quad\forall y\in\F, y\neq0$ and $(x,0,0) \quad\forall x\in\F, x\neq0$, respectively. 
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 10}
+\begin{enumerate}[(a)]
+    \item 
+    \begin{align*}
+        T(x_1,x_2,x_3,\dots,x_n)&=\lambda(x_1,x_2,x_3,\dots,x_n)\\
+        (x_1,2x_2,3x_3,\dots,nx_n)&=(\lambda x_1,\lambda x_2,\lambda x_3,\dots,\lambda x_n)
+    \end{align*}
+
+    \begin{center}
+        \begin{tabular}{c | c} 
+         \hline
+         Eigenvalue & Eigenvector \\
+         \hline
+         $1$ & $(x, 0, 0, \dots, 0) \quad\forall x\in\F, x\neq0$\\
+         $2$ & $(0, x, 0, \dots, 0) \quad\forall x\in\F, x\neq0$\\
+         $3$ & $(0, 0, x, \dots, 0) \quad\forall x\in\F, x\neq0$\\
+         $\dots$ & $\dots$\\
+         $n$ & $(0, 0, 0, \dots, x) \quad\forall x\in\F, x\neq0$\\
+         \hline
+        \end{tabular}
+    \end{center}
+
+    \item 
+    All invariant subspaces:
+    \begin{center}
+        \begin{tabular}{c} 
+         \hline
+         Invariant Subspaces Under $T$\\
+         \hline
+         $\{(x, 0, 0, \dots, 0)|x\in\F, x\neq0\}$ \\
+         $\{(0, x, 0, \dots, 0)|x\in\F, x\neq0\}$ \\
+         $\{(0, 0, x, \dots, 0)|x\in\F, x\neq0\}$ \\
+         $\dots$ \\
+         $\{(0, 0, 0, \dots, x)|x\in\F, x\neq0\}$ \\
+         \hline
+        \end{tabular}
+    \end{center}
+\end{enumerate}
+
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 11}
+Let $p\in\mathcal{P}(\R)$ of degree $m$. Then $Tp$ will be of degree at most $m-1$. So
+\begin{align*}
+    a_1+2a_2z\dots+ma_mz^{m-1}=\lambda(a_0+a_1z+\dots+a_mz^m)
+\end{align*}
+is satisfied only when eigenvalue $\lambda=0$ and eigenvector $p=a \quad\forall a\in\F, a\neq0$ (constant polynomial).
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 21}
+\begin{enumerate}[(a)]
+    \item 
+    If $Tv=\lambda v$, since $T$ is invertible, $\frac{1}{\lambda}v=T^{-1}v$. Thus $\frac{1}{\lambda}$ is an eigenvalue of $T^{-1}$. 
+    
+    Proof of the other way is the same.
+
+    \item As showed in part (a), every eigenvector of $T$ is also an eigenvector for $T^{-1}$, and vice-versa.
+    
+\end{enumerate}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 22}
+{ \color{teal}
+Aside:
+
+\emph{Remark 1.} If $\lambda$ is an eigenvalue for $T$, $\lambda^2$ is an eigenvalue for $T^2$.
+
+\emph{Remark 2.} If $\lambda$ is an eigenvalue for $T^2$, either $+\sqrt{\lambda}$ or $-\sqrt{\lambda}$ is an eigenvalue for $T$.
+
+(\emph{proof.} $T^2v=\lambda v \rightarrow (T-\sqrt{\lambda}I)(T+\sqrt{\lambda}I)v=0$)
+% \rule[0.5\textwidth]{}
+}
+\begin{align*}
+    Tv&=3w\\
+    T^2v&=3Tw\\
+    T^2v&=9v
+\end{align*}
+9 is an eigenvalue for $T^2$, therefore either -3 or 3 is an eigenvalue for $T$.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 25}
+Let $\lambda_1,\lambda_2,\lambda_3\in\F$ be eigenvalues corresponding to $u, v$ and $u+v$, respectively.
+\begin{align*}
+    T(u+v) &= \lambda_3(u+v)\\
+    Tu + Tv &= \lambda_3u+\lambda_3v\\ 
+    \lambda_1u + \lambda_2v &= \lambda_3u+\lambda_3v\\
+    (\lambda_1-\lambda_3)u+(\lambda_2-\lambda_3)v&=0
+\end{align*}
+$u$ and $v$ are linearly independent, thus $\lambda_1=\lambda_2=\lambda_3$.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 29}
+Let $T$ has $n$ distinct eigenvalues, with corresponding eigenvectors $v_1,\dots,v_n$. Trivially  $v_1,\dots,v_n\in\Range T$ for nonzero eigenvalues. Thus if only one of the eigenvalues be zero, there will be $n-1$ linearly independent eigenvectors.
+
+Thus $n-1\leq \dim\Range T=k$, meaning that $n\leq k+1$.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 30}
+Let $u,v,W\in V$ be eigenvectors corresponding to $-4, 5, \sqrt{7}$, respectively.
+Thus exists $a_1, a_2, a_3\in R$ s.t. $x=a_1u+a_2v+a_3w$.
+\begin{align*}
+    T(a_1u+a_2v+a_3w)-9(a_1u+a_2v+a_3w)&=(-4,5,\sqrt{7})\\
+    -13a_1u-4a_2v+(\sqrt{7}-9)a_3w&=(-4,5,\sqrt{7})
+\end{align*}
+since $u,v,w$ are linearly independent in $\R^3$, $a_1, a_2, a_3$ are uniquely determined, thus $x$ exists.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 33}
+Let $v+\Range T\in V/\Range T$, we have
+\begin{align*}
+    T/\Range T(v+\Range T)=\underbrace{Tv + \Range T}_{\in\Range T}
+\end{align*}
+thus $T/\Range T(v+\Range T)=0$ and since $v+\Range T\in V/\Range T$ is arbitrary chosen, $T/\Range T=0$.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 34}
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\
+    $\Null T \cap \Range T = \{0\}$. Let $v+\Null T$ be an arbitrary element in $\Null(T/\Null T)$.
+    \begin{align*}
+        T/\Null T(v+\Null T) = Tv + \Null T=0+\Null T
+    \end{align*}
+    thus $Tv\in\Null T$, and $Tv\in\Null T \cap \Range T= \{0\}$, thus $Tv=0$. Therefore $v\in\Null T$. So, $\Null(T/\Null T)=\Null T$ meaning that $T/\Null T$ is injective.
+    \item[$\Longleftarrow$]\mbox{}\\
+    $T/\Null T$ is injective. Let $u\in\Null T \cap \Range T$ be an arbitrary element s.t. $u=Tv$ for a $v\in V$. Then
+    \begin{align*}
+        (T/\Null T)(v+\Null T)=Tv + \Null T=\underbrace{u}_{\in\Null T}+ \Null T=\Null T
+    \end{align*}
+    injectivity results in $v+\Null T=\Null T$, so $v\in\Null T$. Thus $y=Tv=0$.
+\end{itemize}
+\vskip1mm\hrule
+
+\end{document}
+

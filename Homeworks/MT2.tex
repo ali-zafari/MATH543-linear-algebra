@@ -1,0 +1,351 @@
+\documentclass[12pt, letterpaper]{scrartcl}
+
+
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage[shortlabels]{enumitem} % Use a. in the enumerate
+\usepackage{amsmath} % aligned equations
+\usepackage{graphicx} % include figure
+\usepackage{float} % usage of H for figure float
+\usepackage{amssymb} % \blacksqure
+\usepackage{xhfill} % fill horizontal line
+
+\usepackage{xcolor} % colors
+\usepackage{sectsty} % section coloring
+\sectionfont{\color{blue}}  % sets colour of sections
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\Real}{\mathcal{Re}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\mat}{\mathcal{M}}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\Hom}{\mathcal{L}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\restr}[1]{|_{#1}}
+
+
+\begin{document}
+
+% ### Header - start ###
+\begin{center}
+    \hrule
+    \vspace{0.4cm}
+    { \textbf{{\large Midterm 2}} \\ MATH 543 --- Linear Algebra}
+\end{center}
+{ Name: \textbf{Ali Zafari} \hspace{\fill} Spring 2023 } \newline\hrule
+% ### Header - end ###
+
+% \section*{5.B Eigenvectors and Upper-Triangular Matrices \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Problem 1}
+\begin{enumerate}[(a)]
+    \item $\mathcal{M}(T)=A$.\\\\
+    \textbf{Eigenvalues}:
+     \begin{align*}
+         \det (A-\lambda I)=
+         \left|
+         \begin{array}{ccc}
+              -\frac{1}{2}-\lambda&0&-\frac{3}{2}\\
+              -\frac{3}{2}&-\lambda&-\frac{3}{2}\\
+              0&0&1-\lambda
+         \end{array}
+         \right|
+         =(-\frac{1}{2}-\lambda)(-\lambda)(1-\lambda)
+         =0
+     \end{align*}
+     thus eigenvalues are $\lambda_1=0$, $\lambda_2=-\frac{1}{2}$ and $\lambda_3=1$.\\
+     
+     \textbf{Eigenspaces and Eigenvectors}:
+     \begin{itemize}
+         \item $E(0,T)=\Null(T-0I)$=?
+             \begin{align*}
+                 \left[
+                 \begin{array}{ccc}
+                      -\frac{1}{2}&0&-\frac{3}{2}\\
+                      -\frac{3}{2}&0&-\frac{3}{2}\\
+                      0&0&1
+                 \end{array}
+                 \right]
+                 \left[
+                 \begin{array}{c}
+                      x\\
+                      y\\
+                      z
+                 \end{array}
+                 \right]
+                 =
+                 \left[
+                 \begin{array}{c}
+                      0\\
+                      0\\
+                      0
+                 \end{array}
+                 \right]
+                 \Longrightarrow
+                 E(0,T)=span((0,1,0))
+                 \Longrightarrow
+                 v_1=(0,1,0)
+             \end{align*}
+        \item $E(-\frac{1}{2},T)=\Null(T+\frac{1}{2}I)$=?
+             \begin{align*}
+                 \left[
+                 \begin{array}{ccc}
+                      0&0&-\frac{3}{2}\\
+                      -\frac{3}{2}&\frac{1}{2}&-\frac{3}{2}\\
+                      0&0&\frac{3}{2}
+                 \end{array}
+                 \right]
+                 \left[
+                 \begin{array}{c}
+                      x\\
+                      y\\
+                      z
+                 \end{array}
+                 \right]
+                 =
+                 \left[
+                 \begin{array}{c}
+                      0\\
+                      0\\
+                      0
+                 \end{array}
+                 \right]
+                 \Longrightarrow
+                 E(-\frac{1}{2},T)=span((1,-3,0))
+                 \Longrightarrow
+                 v_2=(1,-3,0)
+             \end{align*}
+
+        \item $E(1,T)=\Null(T-1I)$=?
+             \begin{align*}
+                 \left[
+                 \begin{array}{ccc}
+                      -\frac{3}{2}&0&-\frac{3}{2}\\
+                      -\frac{3}{2}&-1&-\frac{3}{2}\\
+                      0&0&0
+                 \end{array}
+                 \right]
+                 \left[
+                 \begin{array}{c}
+                      x\\
+                      y\\
+                      z
+                 \end{array}
+                 \right]
+                 =
+                 \left[
+                 \begin{array}{c}
+                      0\\
+                      0\\
+                      0
+                 \end{array}
+                 \right]
+                 \Longrightarrow
+                 E(1,T)=span((1,0,-1))
+                 \Longrightarrow
+                 v_3=(1,0,-1)
+             \end{align*}
+     \end{itemize}
+     Since $\dim V=\Sigma_{i=1}^3\dim E(\lambda_i,T)=3$ then $A$ is diagonalizable.
+     
+     \item 
+     Since $A$ is diagonalizable, the equality $D=S^{-1}AS$ holds when $S$ consists of the eigenvectors, and $D$ is diagonal matrix with corresponding eigenvalues. Thus:
+     \begin{align*}
+         \lim_{n\rightarrow\infty}A^n=\lim_{n\rightarrow\infty}SD^nS^{-1}&=
+         \lim_{n\rightarrow\infty}\left[
+         \begin{array}{ccc}
+              0&1&1\\
+              1&-3&0\\
+              0&0&-1
+         \end{array}
+         \right]
+         \left[
+         \begin{array}{ccc}
+              0&0&0\\
+              0&-\frac{1}{2}&0\\
+              0&0&1
+         \end{array}
+         \right]^n
+         \left[
+         \begin{array}{ccc}
+              0&1&1\\
+              1&-3&0\\
+              0&0&-1
+         \end{array}
+         \right]^{-1}\\
+         &=\lim_{n\rightarrow\infty}\left[
+         \begin{array}{ccc}
+              0&1&1\\
+              1&-3&0\\
+              0&0&-1
+         \end{array}
+         \right]
+         \left[
+         \begin{array}{ccc}
+              0&0&0\\
+              0&(-\frac{1}{2})^n&0\\
+              0&0&1^n
+         \end{array}
+         \right]
+         \left[
+         \begin{array}{ccc}
+              3&1&3\\
+              1&0&1\\
+              0&0&-1
+         \end{array}
+         \right]\\
+         &=\left[
+         \begin{array}{ccc}
+              0&1&1\\
+              1&-3&0\\
+              0&0&-1
+         \end{array}
+         \right]
+         \left[
+         \begin{array}{ccc}
+              0&0&0\\
+              0&0&0\\
+              0&0&1
+         \end{array}
+         \right]
+         \left[
+         \begin{array}{ccc}
+              3&1&3\\
+              1&0&1\\
+              0&0&-1
+         \end{array}
+         \right]\\
+         &=
+         \left[
+         \begin{array}{ccc}
+              0&0&-1\\
+              0&0&0\\
+              0&0&1
+         \end{array}
+         \right]
+     \end{align*}
+\end{enumerate}
+ 
+\vskip1mm\hrule
+
+
+\subsubsection*{Problem 2}
+The only distinct eigenvalue of $T\in \mathcal{L}(\C^n)$ is $\lambda=0$.
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\
+    If $T$ is diagonalizable then:\\\\
+    $\color{darkgray}\dim \C^n=\dim E(0,T)=\dim\Null(T-0I)=\dim\Null T $ therefore $\color{darkgray}\dim\Null T=n$.
+    
+    Since $\color{darkgray}\Null T \subseteq \C^n$, we have $\color{darkgray}\Null T=\C^n$. Therefore $\color{darkgray}\forall v\in \C^n \quad Tv=0$ meaning that $\color{darkgray}T=0$. 
+
+    \item[$\Longleftarrow$]\mbox{}\\
+    If $T=0$ then:\\\\
+    $\color{darkgray}E(0,T)=\Null(T-0I)=\Null T=\{v | Tv=0, v\in\C^n\}=\C^n$.
+    
+    Since $\color{darkgray}\dim \C^n=\dim E(0,T)=n$ then $\color{darkgray}T$ is diagonalizable.
+\end{itemize}
+\vskip1mm\hrule
+
+
+\subsubsection*{Problem 3}
+\begin{enumerate}[(a)]
+    \item $v_1=(-1,0,1)$ and $v_2=(0,1,-1)$, using Gram-Schmidt procedure: 
+    \begin{align*}
+        e_1=\frac{v_1}{\Vert v_1 \Vert}=\frac{(-1,0,1)}{\sqrt{2}}=\frac{1}{\sqrt{2}}(-1,0,1)
+    \end{align*}
+    and
+    \begin{align*}
+        e_2&=\frac{v_2-\langle v_2,e_1\rangle e_1}{\Vert v_2-\langle v_2,e_1\rangle e_1\Vert}\\
+        &=\frac{(0,1,-1)-(-\frac{1}{\sqrt{2}})\frac{1}{\sqrt{2}}(-1,0,1)}{\Vert(0,1,-1)-(-\frac{1}{\sqrt{2}})\frac{1}{\sqrt{2}}(-1,0,1)\Vert}\\
+        &=\sqrt{\frac{2}{3}}(-\frac{1}{2},1,-\frac{1}{2})
+    \end{align*}
+
+    \item 
+    Since the origin is in $U$, the minimum distance to it from $U$ (length of orthogonal projection $P_U\mathbf{0}$) is 0.
+    \begin{align*}
+        P_U\mathbf{0}=\langle(0,0,0),e_1\rangle e_1 + \langle(0,0,0),e_2\rangle e_2=(0,0,0)
+    \end{align*}
+\end{enumerate}
+\vskip1mm\hrule
+
+
+\subsubsection*{Problem 4}
+Let $M,N,P,Q\in \R^2$ denote the vertices of the MNPQ quadrilateral.
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\If $\mathbf{PM\perp NQ}$, then:\\\\
+    Diagonals can be written as follows:
+    \begin{align*}
+        PM=M-P\\
+        NQ=Q-N
+    \end{align*}
+    Then:
+    \begin{align*}
+        \langle M-P,Q-N\rangle&=0\\
+        \langle M,Q\rangle-\langle M,N\rangle-\langle P,Q\rangle+\langle P,N\rangle&=0\\
+        2\langle M,Q\rangle-2\langle M,N\rangle-2\langle P,Q\rangle+2\langle P,N\rangle&=0\\
+        \left\{
+        \begin{array}{cccccccc}
+        &2\langle M,Q\rangle&-&2\langle M,N\rangle&-&2\langle P,Q\rangle&+&2\langle P,N\rangle\\
+        +&{\color{blue}\langle N,N\rangle}&-&{\color{blue}\langle N,N\rangle}&+&{\color{brown}\langle M,M\rangle}&-&{\color{brown}\langle M,M\rangle}\\
+        +&{\color{gray}\langle Q,Q\rangle}&-&{\color{gray}\langle Q,Q\rangle}&+&{\color{teal}\langle P,P\rangle}&-&{\color{teal}\langle P,P\rangle}
+        \end{array}
+        \right\}&=0\\
+        \left\{
+        \begin{array}{cccccccc}
+        &{\color{blue}\langle N,N\rangle}&-&\langle N,M\rangle&-&\langle M,N\rangle&+&{\color{brown}\langle M,M\rangle}\\
+        +&{\color{gray}\langle Q,Q\rangle}&-&\langle Q,P\rangle&-&\langle P,Q\rangle&+&{\color{teal}\langle P,P\rangle}\\
+        -&{\color{teal}\langle P,P\rangle}&+&\langle P,N\rangle&+&\langle N,P\rangle&-&{\color{blue}\langle N,N\rangle}\\
+        -&{\color{gray}\langle Q,Q\rangle}&+&\langle Q,M\rangle&+&\langle M,Q\rangle&-&{\color{brown}\langle M,M\rangle}
+        \end{array}
+        \right\}&=0 \quad \text{(re-arranging)}\\
+        \left\{
+        \begin{array}{cc}
+        &\langle N-M, N-M\rangle\\
+        +&\langle Q-P, Q-P\rangle\\
+        -&\langle P-N, P-N\rangle\\
+        -&\langle Q-M, Q-M\rangle
+        \end{array}
+        \right\}&=0%\\
+        % \langle N-M, N-M\rangle+\langle Q-P, Q-P\rangle - \langle P-N, P-N\rangle-\langle M-Q, M-Q\rangle &= 0
+    \end{align*}
+    Thus:
+    \begin{align*}
+        \langle N-M, N-M\rangle+\langle Q-P, Q-P\rangle &= \langle P-N, P-N\rangle+\langle Q-M, Q-M\rangle\\
+        |MN|^2+|PQ|^2&=|NP|^2+|MQ|^2
+    \end{align*}
+    
+    \item[$\Longleftarrow$]\mbox{}\\If $\mathbf{|MN|^2+|PQ|^2=|NP|^2+|MQ|^2}$, then:\\\\
+    Let the sides of the quadrilateral be written in terms of its vertices as $MN=N-M$, $PQ=Q-P$, $NP=P-N$ and $MQ=Q-M$ then:
+    \begin{align*}
+        &\langle N-M, N-M\rangle+\langle Q-P, Q-P\rangle = \langle P-N, P-N\rangle+\langle Q-M, Q-M\rangle\\
+        &\langle N-M, N-M\rangle+\langle Q-P, Q-P\rangle - \langle P-N, P-N\rangle-\langle Q-M, Q-M\rangle = 0
+    \end{align*}
+    \begin{align*}
+        \left\{
+        \begin{array}{cccccccc}
+        &\langle N,N\rangle&-&\langle N,M\rangle&-&\langle M,N\rangle&+&\langle M,M\rangle\\
+        &\langle Q,Q\rangle&-&\langle Q,P\rangle&-&\langle P,Q\rangle&+&\langle P,P\rangle\\
+        -&\langle P,P\rangle&+&\langle P,N\rangle&+&\langle N,P\rangle&-&\langle N,N\rangle\\
+        -&\langle Q,Q\rangle&+&\langle Q,M\rangle&+&\langle M,Q\rangle&-&\langle M,M\rangle
+        \end{array}
+        \right\}&=0\\
+        -2\langle N,M\rangle-2\langle Q,P\rangle+2\langle P,N\rangle+2\langle M,Q\rangle&=0\\
+        -\langle M,N\rangle-\langle P,Q\rangle+\langle P,N\rangle+\langle M,Q\rangle&=0\\
+        \langle M, Q-N\rangle - \langle P, Q-N\rangle&=0\\
+        \langle M-P, Q-N\rangle&=0\\
+        PM\perp NQ
+    \end{align*}    
+    
+\end{itemize}
+\vskip1mm\hrule
+
+
+\end{document}
+

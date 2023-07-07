@@ -1,0 +1,250 @@
+\documentclass[12pt, letterpaper]{scrartcl}
+
+
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage[shortlabels]{enumitem} % Use a. in the enumerate
+\usepackage{amsmath} % aligned equations
+\usepackage{graphicx} % include figure
+\usepackage{float} % usage of H for figure float
+\usepackage{amssymb} % \blacksqure
+\usepackage{xhfill} % fill horizontal line
+
+\usepackage{xcolor} % colors
+\usepackage{sectsty} % section coloring
+\sectionfont{\color{blue}}  % sets colour of sections
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\Real}{\mathcal{Re}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\mat}{\mathcal{M}}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\Hom}{\mathcal{L}}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\restr}[1]{|_{#1}}
+
+
+\begin{document}
+
+% ### Header - start ###
+\begin{center}
+    \hrule
+    \vspace{0.4cm}
+    { \textbf{{\large Homework 2}} \\ MATH 543 --- Linear Algebra}
+\end{center}
+{ Name: \textbf{Ali Zafari} \hspace{\fill} Spring 2023 } \newline\hrule
+% ### Header - end ###
+
+\section*{2.C Dimension \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 4}
+\begin{enumerate}[(a)]
+    \item 
+    \begin{align*}
+        z-6, (z-6)^2, (z-6)^3, (z-6)^4    
+    \end{align*}
+
+    \item 
+    \begin{align*}
+        z-6, (z-6)^2, (z-6)^3, (z-6)^4, 1    
+    \end{align*}
+    
+    \item $W$ is the subspace which is spanned by the basis 1, i.e., 
+    \begin{align*}
+        W=\{a: a\in \F\}
+    \end{align*}
+    then we will have $\mathcal{P}_4(\F)=U\oplus W$.
+
+\end{enumerate}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 9}
+Let's define $W=span(v_1+w, \dots, v_m+w)$. If we can show that there exist a list of length $m-1$ of linearly independent vectors in $W$ we are done. (Although $V$ might not be finite dimensional, for sure $W$ is a finite dimensional space since it is spanned by a finite number of vectors) 
+
+By using the fact that the length of every linearly independent list of vectors is less than or equal to the length of every spanning list in the same vector space, we can prove the statement.
+
+We know that in the $span(v_1+w, \dots, v_m+w)$, their differences are also in the same space, i.e.,:
+\begin{align*}
+    v_i+w-(v_1+w) &\in W \qquad\forall i>1\\
+    v_i-v_1 &\in W \qquad\forall i>1
+\end{align*}
+Therefore we will look for proving that the list $v_2-v_1, v_3-v_1,\dots,v_m-v_1$ is linearly independent.
+
+Suppose $a_2,\dots,a_m\in\F$ such that
+\begin{align*}
+    a_2(v_2-v_1)+ a_3(v_3-v_1)+\dots+a_m(v_m-v_1)&=0\\
+    -(a_2+a_3+\dots+a_m)v_1+a_2v_2+a_3v_3+\dots+a_mv_m&=0
+\end{align*}
+since we know that $v_1, \dots, v_m$ is a linearly independent list, all the coefficients $a_2=\dots=a_m=0$, simultaneously. As a result the list $v_2-v_1, v_3-v_1,\dots,v_m-v_1$ is linearly independent of length $m-1$ in space $W$.
+
+Every spanning list of vectors in $W$ must have length greater or equal to linearly independent list in $W$: 
+\begin{align*}
+    \text{dim span}(v_1+w, \dots, v_m+w) \geq m-1
+\end{align*}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 15}
+Since $V$ is finite dimensional (dim $V=n$) there exist a basis $v_1,\dots,v_n$ of $V$ such that
+\begin{align*}
+    v = a_1v_1+\dots+a_nv_n \qquad \forall v\in V
+\end{align*}
+Let's define 1-dimensional subspaces $U_k=span(v_k) ,\quad \forall k\in \{1,\dots,n\}$, then obviously we have
+\begin{align*}
+    V=U_1+\dots+U_n
+\end{align*}
+If we show that this summation is direct, we are done. For a sum of subspaces to be direct, every element in the sum must be written in only one way as a sum $u_1+\dots+u_n$ where each $u_j\in U_j$.
+
+Let $u\in U_1+\dots+U_n$, then there exist $b_1,\dots,b_n\in\F$ such that
+\begin{align*}
+    u&=b_1u_1+\dots+b_nu_n\\
+    &=b_1(c_1v_1)+\dots+b_n(c_nv_n)\\
+    &=d_1v_1+\dots+d_nv_n
+\end{align*}
+Since $v_1,\dots,v_n$ is a basis of $V$, this linear combination is unique and there is only one choice for $d_1,\dots,d_n$ (and equivalently only one choice for $b_1,\dots,b_n$), therefore the sum is direct.
+
+\vskip1mm\hrule
+\clearpage
+\section*{3.A The Vector Space of Linear Maps \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 4}
+Assume that there are coefficients $a_1,\dots,a_m\in \F$ such that make the equation below holds for the vectors $v_1,\dots,v_m\in V$:
+\begin{align*}
+    a_1v_1+\dots+a_mv_m=0
+\end{align*}
+if we can show that all the coefficients must be zero simultaneously, we are done.
+Let's apply linear map $T\in\mathcal{L}(V,W)$ on both sides:
+\begin{align*}
+    T(a_1v_1+\dots+a_mv_m)&=T0\\
+    a_1Tv_1+\dots+a_mTv_m&=0
+\end{align*}
+We already know that $Tv_1,\dots,Tv_m$ are linearly independent, therefore the only way for their linear combination to be equal to zero is to have all the coefficients equal to zero, i.e., $a_1=\dots=a_m=0$.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 8}
+\begin{align*}
+    \varphi(x,y)=
+    \begin{cases} 
+      \frac{x^2}{y} &\quad y\neq0 \\
+      0 &\quad y=0  
+   \end{cases} \qquad\forall\quad(x,y)\in\R^2
+\end{align*}
+%Homogeneity (scalar multiplication) alone does not suffice for a function to be a linear map.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 13}
+Since $v_1,\dots, v_m\in V$ are linearly dependent, we can choose one of them, say $v_i$ and write it as a linear combination of the others by having $a_1,\dots,a_{i-1},a_{i+1}, \dots, a_m\in\F$:
+\begin{align*}
+    &v_i = a_1v_1+\dots+a_{i-1}v_{i-1}+a_{i+1}v_{i+1}+\dots+a_mv_m\\
+    &v_i -a_1v_1-\dots-a_{i-1}v_{i-1}-a_{i+1}v_{i+1}-\dots-a_mv_m = 0
+\end{align*}
+We continue the proof by contradiction. Let's assume that there exist $T\in\mathcal{L}(V,W)$ and a set of arbitrary vectors $w_1,\dots,w_m\in W$ (not all of them zero) such that $Tv_k=w_k$ for each $k=1,\dots,m$. Then we will have:
+\begin{align*}
+    T(v_i -a_1v_1-\dots-a_{i-1}v_{i-1}-a_{i+1}v_{i+1}-\dots-a_mv_m) &= T0\\
+    w_i-a_1w_1-\dots-a_{i-1}w_{i-1}-a_{i+1}w_{i+1}-\dots-a_mw_m&=0
+\end{align*}
+Now if we choose vectors in $W$ as: $w_1,\dots,w_{i-1},w_i,w_{i+1}\dots,w_m=0,\dots,0,w,0,\dots,0$ such that $w\neq0$. With this set of vectors in $W$, the equation above will tell us that $w_i=0$, which is a contradiction. Therefore there is no such linear map $T\in\mathcal{L}(V,W)$.
+\vskip1mm\hrule
+
+\section*{3.B Null Spaces and Ranges \xrfill[2pt]{3pt}[blue]}
+\subsubsection*{Exercise 2}
+If range $S \subset$ null $T$, then $\forall v\in V$ we have $TSv=0$. In addition $\forall w\in V$, we know that $Tw\in V$ as well, so we define $w^\prime=Tw$:
+\begin{align*}
+    (ST)^2w=STSTw=S(TS)w^\prime=S0=0.
+\end{align*}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 4}
+Let $T_1, T_2, T_3, T_4\in \{T\in \mathcal{L}(\R^5, \R^4): \text{dim null }T>2\}$ defined as follows:
+\begin{align*}
+    T_1(x,y,z,w,h)=(x,0,0,0) &\qquad\text{dim null }T_1 = 4\\
+    T_2(x,y,z,w,h)=(0,y,0,0) &\qquad\text{dim null }T_2 = 4\\
+    T_3(x,y,z,w,h)=(0,0,z,0) &\qquad\text{dim null }T_3 = 4\\
+    T_4(x,y,z,w,h)=(0,0,0,w) &\qquad\text{dim null }T_4 = 4
+\end{align*}
+But $T^*=T_1+T_2+T_3+T_4$ has dim null $T^*=1$. Addition is not closed in this space, hence it is not a subspace.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 9}
+Assume that there are coefficients $a_1,\dots,a_m\in \F$ such that make the equation below holds for the vectors $v_1,\dots,v_m\in V$:
+\begin{align*}
+    a_1Tv_1+\dots+a_mTv_m=0
+\end{align*}
+if we can show that all the coefficients must be zero simultaneously, we are done.
+
+Since $T$ is a linear function we can re-write the equation above as:
+\begin{align*}
+    T(a_1v_1+\dots+a_mv_m)=0
+\end{align*}
+Since $T$ is injective, its null space will have only zero vector in it, i.e., null $T=\{0\}$. As a result from the equation above it is implied that:
+\begin{align*}
+    a_1v_1+\dots+a_mv_m=0
+\end{align*}
+In addition, we know that $v_1,\dots, v_m$ are linearly independent, therefore all coefficients $a_1=\dots=a_m=0$, simultaneously.
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 18}
+We prove it in two steps:
+\begin{itemize}
+    \item[$\Longrightarrow$]\mbox{}\\
+    If there exists a surjective linear map $T\in\mathcal{L}(V,W)$ then dim range $T$=dim $W$. By applying fundamental theorem of linear maps:
+    \begin{align*}
+        \text{dim }V&= \text{dim null }T + \text{dim range }T\\
+        \text{dim }V&= \text{dim null }T + \text{dim }W\\
+        \text{dim }V&\geq \text{dim }W
+    \end{align*}
+    
+    \item[$\Longleftarrow$]\mbox{}\\
+    Assume that there exist a linear map with $\text{dim null }T = 0$.
+    By applying fundamental theorem of linear maps into our hypothesis:
+    \begin{align*}
+        \text{dim }V &\geq \text{dim }W\\
+        \text{dim null }T + \text{dim range }T&\geq \text{dim }W\\
+        \text{dim range }T&\geq \text{dim }W\\
+    \end{align*}
+    We also know that $\text{dim range }T\leq \text{dim }W$. Therefore $\text{dim range }T=\text{dim }W$. And by the fact that range $T$ is a subspace of $W$, we conclude that this linear map $T$ is surjective.
+
+\end{itemize}
+\vskip1mm\hrule
+
+\subsubsection*{Exercise 27}
+Let's assume a linear map $T$:
+\begin{align*}
+    p=Tq=3q'+5q''
+\end{align*}
+such that $q\in\mathcal{P}_{n}(\R)$ and $p\in\mathcal{P}_{n-1}(\R)$. To make sure there exists a $q$ for every chosen $p$, the linear map must be surjective. Therefore if we can show that there exist such surjective linear map, we are done.
+
+Fundamental theorem of linear maps tells us that
+\begin{align*}
+    \text{dim }\mathcal{P}_{n}(\R)&= \text{dim null }T + \text{dim range }T\\
+    \text{dim range }T &= \text{dim }\mathcal{P}_{n}(\R) - \text{dim null }T\\
+    \text{dim range }T &= (n+1) - \text{dim null }T
+\end{align*}
+if we can show that the $\text{dim range }T$ is equal to $n$ ($\text{dim }\mathcal{P}_{n-1}(\R)$) for at least one linear map $T\in\mathcal{L}(\mathcal{P}_{n}(\R),\mathcal{P}_{n-1}(\R))$, we are done. (since range $T$ is a subspace of the co-domain and when their dimensions equal each other we can say they are equal vector spaces)
+
+To have this, there should exist a $T$ which have the $\text{dim null }T$ equal to 1. 
+
+Let's find the subspace $\text{null }T$.
+\begin{align*}
+    \text{null }T &= \{q\in\mathcal{P}_{n}(\R):Tq=0\}\\
+    &=\{q\in\mathcal{P}_{n}(\R):5q''+3q'=0\}\\
+    &=\{a:a\in\R\}
+\end{align*}
+as shown above the nullspace of $T$ includes all constant polynomials, and it has dimension of 1 (its basis has length one).
+
+Finally we have
+\begin{align*}
+    \text{dim range }T &= (n+1) - \text{dim null }T\\
+    \text{dim range }T &= (n+1) - 1\\
+    \text{dim range }T &= n
+\end{align*}
+We have shown that the dimension of range of $T$ is equal to dimension of its co-domain ($\mathcal{P}_{n-1}(\R)$), therefore $T$ is surjective and the proof is done.
+\vskip1mm\hrule
+
+\end{document}
+
