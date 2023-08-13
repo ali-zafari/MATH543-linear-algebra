@@ -1,4 +1,4 @@
-# Math 543 - Graduate Linear Algebra
+# Math 543 - Abstract Linear Algebra
 Spring 2022
 
 Textbook: Axler, [Linear Algebra Done Right](https://linear.axler.net/), 3rd edition
