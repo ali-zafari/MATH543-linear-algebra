@@ -1,6 +1,7 @@
 # Math 543 - Abstract Linear Algebra
 Spring 2022
 Syllabus: [link](./syllabus.pdf)
+
 Textbook: Axler, [Linear Algebra Done Right](https://linear.axler.net/), 3rd edition
 
 Instructor: [Casian Pantea](http://math.wvu.edu/~capantea/)
