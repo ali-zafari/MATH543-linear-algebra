@@ -1,4 +1,4 @@
-# Math 543 - Abstract Linear Algebra
+# Math 543 - Advanced Linear Algebra
 Spring 2022
 
 Syllabus: [link](./syllabus.pdf)
